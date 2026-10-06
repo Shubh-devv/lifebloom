@@ -86,6 +86,15 @@ section[id]{scroll-margin-top:84px}
 .nav a{text-decoration:none;font-weight:500;font-size:.95rem;color:var(--cocoa-2);transition:color .2s}
 .nav a:hover{color:var(--rose-ink)}
 .hdr .btn{padding:.72rem 1.3rem;font-size:.92rem}
+.social{display:flex;gap:8px;align-items:center}
+.social a{width:40px;height:40px;border-radius:50%;border:1.5px solid rgba(63,38,25,.22);display:grid;place-items:center;color:var(--cocoa);transition:background .3s,border-color .3s,color .3s,transform .3s var(--ease)}
+.social a:hover{background:var(--white);border-color:var(--cocoa);color:var(--rose-ink);transform:translateY(-2px)}
+.social svg{width:18px;height:18px}
+.social-hdr{margin-left:-6px}
+.social-hdr a{width:36px;height:36px}
+.social-hdr svg{width:16px;height:16px}
+.social-ftr a{width:52px;height:52px}
+.social-ftr svg{width:20px;height:20px}
 
 /* ================= HERO: studio reveal ================= */
 .hero{position:relative;overflow:hidden;text-align:center;padding:30px 0 84px;
@@ -118,6 +127,10 @@ section[id]{scroll-margin-top:84px}
 .ped img{position:relative;width:100%;height:auto;filter:drop-shadow(0 26px 24px rgba(63,38,25,.15));transition:transform .7s var(--ease),filter .7s}
 .ped::before{content:"";position:absolute;left:7%;right:7%;bottom:-2.5%;height:13%;border-radius:50%;
   background:radial-gradient(ellipse at center,rgba(84,48,32,.42),rgba(84,48,32,0) 70%);filter:blur(5px);transition:transform .7s var(--ease),opacity .7s}
+/* slow turntable spin on the pedestal */
+.ped{perspective:1600px}
+.ready .ped img{animation:pedSpin 9s linear 1.6s infinite}
+@keyframes pedSpin{from{rotate:y 0deg}to{rotate:y 360deg}}
 .ped:hover img,.ped:focus-visible img{transform:translateY(-10px);filter:drop-shadow(0 38px 30px rgba(63,38,25,.2))}
 .ped:hover::before,.ped:focus-visible::before{transform:scale(.9);opacity:.7}
 .peek{position:absolute;left:50%;top:-6%;transform:translate(-50%,8px);opacity:0;pointer-events:none;white-space:nowrap;
@@ -173,8 +186,9 @@ section[id]{scroll-margin-top:84px}
 .manifesto p{font-family:var(--serif);font-weight:300;font-size:clamp(1.9rem,4.2vw,3.5rem);line-height:1.18;letter-spacing:-.02em;max-width:1000px;margin:0 auto;text-align:center}
 .manifesto .w{opacity:.16;transition:opacity .35s}
 .manifesto .w.on{opacity:1}
-.manifesto .sig{display:flex;justify-content:center;margin-top:40px}
-.manifesto .sig img{width:70px;opacity:.85}
+.manifesto p.m-close{font-style:italic;font-size:clamp(1.4rem,2.6vw,2.1rem);color:var(--rose-ink);margin-top:28px}
+.manifesto .sig{display:flex;justify-content:center;margin-top:48px}
+.manifesto .sig img{width:clamp(130px,16vw,180px);opacity:.9}
 
 /* ================= PRODUCT SHOWCASE ================= */
 .showcase{--tint:#F4E0D7;position:relative;border-radius:40px;background:var(--tint);transition:background .8s var(--ease);
@@ -211,28 +225,12 @@ section[id]{scroll-margin-top:84px}
 .sw small{display:block;font-size:.84rem;color:var(--muted);font-weight:500}
 .fine{font-size:.86rem;color:var(--muted);margin-top:18px}
 
-/* promise */
-.promise{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line)}
-.pr{padding:34px 26px 14px 0}
-.pr+.pr{padding-left:26px;border-left:1px solid var(--line)}
-.pr .n{display:block;width:28px;height:2px;background:var(--rose);margin-top:4px}
-.pr h4{font-size:1.85rem;line-height:1.08;margin:10px 0 10px}
-.pr p{font-size:.97rem;color:var(--cocoa-2)}
-
-/* steps */
-.steps{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:22px;counter-reset:s}
-.steps li{border-top:1.5px solid var(--cocoa);padding-top:24px}
-.steps li::before{counter-increment:s;content:"0" counter(s);font-family:var(--serif);font-size:1rem;color:var(--rose-ink);display:block;margin-bottom:18px}
-.steps h4{font-size:1.9rem;line-height:1.08;margin-bottom:10px}
-.steps p{font-size:.97rem;color:var(--cocoa-2)}
-
 /* ================= FORM ================= */
 .prebook{background:var(--blush);border-radius:44px;padding:72px 64px;display:grid;grid-template-columns:.92fr 1.08fr;gap:56px;align-items:start;position:relative;overflow:hidden}
 .pb-ped{position:relative;max-width:380px;margin-top:40px}
 .pb-ped::before{content:"";position:absolute;left:10%;right:10%;bottom:9%;height:11%;border-radius:50%;
   background:radial-gradient(ellipse at center,rgba(63,38,25,.28),rgba(63,38,25,0) 70%);filter:blur(6px)}
 .pb-ped img{position:relative;width:100%;height:auto;filter:drop-shadow(0 22px 22px rgba(63,38,25,.16))}
-.pb-ped figcaption{font-family:var(--serif);font-style:italic;font-size:1.15rem;color:var(--cocoa-2);margin-top:10px;text-align:center}
 .perks{list-style:none;margin-top:26px;display:grid;gap:12px}
 .perks li{display:flex;gap:12px;align-items:center;font-weight:500}
 .perks .dot{width:28px;height:28px;border-radius:50%;background:var(--white);display:grid;place-items:center;flex:0 0 auto;color:var(--rose-ink)}
@@ -293,7 +291,7 @@ fieldset{border:0}
 .ftr-top{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap}
 .ftr .stack{width:220px}
 .ftr .tagline{display:block;margin-top:14px}
-.ftr-links{display:flex;gap:12px;flex-wrap:wrap}
+.ftr-links{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
 .disclaimer{font-size:.84rem;color:var(--muted);margin-top:44px;max-width:54rem}
 .credits{font-size:.78rem;color:var(--muted);margin-top:10px}
 .ftr-bot{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:22px;padding-top:20px;border-top:1px solid var(--line);font-size:.88rem;color:var(--cocoa-2)}
@@ -329,9 +327,6 @@ fieldset{border:0}
 @media (max-width:1020px){
   .showcase{grid-template-columns:1fr;padding:44px 34px;gap:26px}
   .sc-photo{max-width:340px}
-  .promise{grid-template-columns:1fr 1fr}
-  .pr:nth-child(3){padding-left:0;border-left:0}
-  .pr:nth-child(n+3){border-top:1px solid var(--line)}
   .prebook{grid-template-columns:1fr;padding:56px 40px;gap:36px}
   .pb-ped{max-width:280px;margin:28px auto 0}
 }
@@ -343,7 +338,11 @@ fieldset{border:0}
   .brand .mark{height:36px}
   .brand .word{height:15px}
   .nav{display:none}
-  .hdr .btn{margin-left:auto;padding:.66rem 1rem;font-size:.88rem}
+  .hdr-in{gap:12px}
+  .social-hdr{margin-left:auto;gap:6px}
+  .social-hdr a{width:32px;height:32px}
+  .social-hdr svg{width:14px;height:14px}
+  .hdr .btn{padding:.66rem 1rem;font-size:.88rem}
   .hero{padding:24px 0 64px}
   .podium{height:390px}
   .podium .giant{top:28%;width:96vw}
@@ -362,16 +361,16 @@ fieldset{border:0}
   .showcase{padding:30px 18px 26px;border-radius:30px;min-height:0}
   .sc-photo{max-width:280px}
   .switch{grid-template-columns:1fr;gap:8px}
-  .promise{grid-template-columns:1fr}
-  .pr,.pr+.pr,.pr:nth-child(3){padding:26px 0 18px;border-left:0}
-  .pr+.pr{border-top:1px solid var(--line)}
-  .steps{grid-template-columns:1fr;gap:34px}
   .prebook{padding:40px 18px;border-radius:30px}
   .card{padding:24px 18px;border-radius:24px}
   .row2{grid-template-columns:1fr}
   .faq summary{font-size:1.3rem}
   .wa-fab{display:none}
   .mbar{display:grid}
+}
+@media (max-width:520px){
+  .social-hdr{display:none}
+  .hdr .btn{margin-left:auto}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;animation-delay:0s!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
@@ -407,6 +406,7 @@ fieldset{border:0}
   <div class="shell hdr-in">
     <a class="brand" href="#top" aria-label="Lifebloom home"><img class="mark" src="assets/emblem.png" alt="" width="50" height="50"><img class="word" src="assets/wordmark.png" alt="Lifebloom" width="184" height="22"></a>
     <nav class="nav" aria-label="Main"><a href="#products">Products</a><a href="#about">About us</a></nav>
+    <div class="social social-hdr"><a href="#" data-social="instagram" target="_blank" rel="noopener" aria-label="Lifebloom on Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".6" fill="currentColor"/></svg></a><a href="#" data-social="email" aria-label="Email Lifebloom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></a><a href="#" data-social="linkedin" target="_blank" rel="noopener" aria-label="Lifebloom on LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9.5h4V21H3V9.5Zm6.5 0h3.8v1.6h.06c.53-1 1.83-2.06 3.77-2.06 4.03 0 4.77 2.65 4.77 6.1V21h-4v-5.2c0-1.24-.02-2.84-1.73-2.84-1.73 0-2 1.35-2 2.75V21h-4V9.5Z"/></svg></a></div>
     <a class="btn btn-main" href="#prebook">Get early access</a>
   </div>
 </header>
@@ -430,7 +430,7 @@ fieldset{border:0}
   </div>
 
   <div class="shell hero-foot">
-    <p class="lede fade-in" style="--d:.35s">Wellness that moves with every stage of a woman&rsquo;s life.<br>Four thoughtfully curated supplements for periods, postpartum, menopause and everyday strength.</p>
+    <p class="lede fade-in" style="--d:.35s">Wellness that moves with every stage of a woman&rsquo;s life.</p>
     <div class="hero-cta fade-in" style="--d:.5s">
       <a class="btn btn-main" href="#prebook">Get early access</a>
     </div>
@@ -462,43 +462,20 @@ fieldset{border:0}
 
 <section class="manifesto" id="about">
   <div class="shell">
-    <p id="manifesto">A woman's body changes through the busy everyday, the months after giving birth, and the shift that comes in midlife. Most wellness is made for no one in particular. Lifebloom is made for her, at each of those moments.</p>
+    <p id="manifesto">Lifebloom is a women's wellness brand built around the biological journey of a woman. Every stage, from monthly cycles to motherhood to menopause, brings its own needs, and conversations about them are often kept quiet.</p>
+    <p class="m-close">One brand for every stage of a woman's journey.</p>
     <div class="sig"><img src="assets/emblem.png" alt=""></div>
   </div>
 </section>
 
 <section class="sec" id="products" style="padding-top:20px">
   <div class="shell">
-    <div class="sec-head"><h2>The first three</h2><p>Each one is made for a different stage of a woman's life. Pick one to learn more, or pre-book all three.</p></div>
     <div class="showcase" id="showcase" data-p="gummies">
       <div class="sc-photo" id="scPhoto" aria-hidden="true"><span class="form-tag"><i></i><span id="formTag">Chewable gummy</span></span></div>
       <div class="info" id="info"></div>
     </div>
     <div class="switch" role="tablist" aria-label="Choose a product" id="switch"></div>
     <p class="fine">Packaging, final names and full ingredient lists will be shared before launch. Photos show the moments each product is made for.</p>
-  </div>
-</section>
-
-<section class="sec" style="padding-top:20px">
-  <div class="shell">
-    <div class="sec-head"><h2>What we're promising, from day one</h2></div>
-    <div class="promise">
-      <div class="pr"><span class="n"></span><h4>Rooted in nature</h4><p>We're building every formula around ingredients from nature, and we'll show you each one.</p></div>
-      <div class="pr"><span class="n"></span><h4>Made for her stages</h4><p>Not one-size-fits-all. Each product is designed for a specific time in a woman's life.</p></div>
-      <div class="pr"><span class="n"></span><h4>Honest labels</h4><p>No hidden blends or vague promises. The full ingredient list goes on the label and on this site.</p></div>
-      <div class="pr"><span class="n"></span><h4>A real person replies</h4><p>Questions go to our team on WhatsApp, not a bot.</p></div>
-    </div>
-  </div>
-</section>
-
-<section class="sec" id="how" style="padding-top:20px">
-  <div class="shell">
-    <div class="sec-head"><h2>How pre-booking works</h2><p>It's free, and you're not committing to buy.</p></div>
-    <ol class="steps">
-      <li><h4>Pre-book in 30 seconds</h4><p>Tell us your name, email, age, mobile number and which products you're interested in.</p></li>
-      <li><h4>We confirm on WhatsApp</h4><p>You'll get a message from Lifebloom so you know your place is saved.</p></li>
-      <li><h4>Hear first at launch</h4><p>You'll get prices and first access before anyone else. Buy only if you want to.</p></li>
-    </ol>
   </div>
 </section>
 
@@ -513,7 +490,7 @@ fieldset{border:0}
           <li><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg></span>First access on launch day</li>
           <li><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg></span>Pay only if you decide to buy</li>
         </ul>
-        <figure class="pb-ped"><img src="assets/pedestal-ivory.webp" alt="A stone pedestal draped in ivory satin with Lifebloom engraved on the base" width="1100" height="788" loading="lazy"><figcaption>Your place, kept under wraps until launch.</figcaption></figure>
+        <figure class="pb-ped"><img src="assets/pedestal-ivory.webp" alt="A stone pedestal draped in ivory satin" width="1100" height="788" loading="lazy"></figure>
       </div>
       <div class="card">
         <!-- Netlify Forms picks this form up automatically on deploy (Site > Forms in the Netlify dashboard) -->
@@ -574,8 +551,9 @@ fieldset{border:0}
     <div class="ftr-top">
       <div><img class="stack" src="assets/logo-stack.png" alt="Lifebloom" width="220" height="125"><span class="tagline">A healthier, brighter you</span></div>
       <div class="ftr-links">
+        <div class="social social-ftr"><a href="#" data-social="instagram" target="_blank" rel="noopener" aria-label="Lifebloom on Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".6" fill="currentColor"/></svg></a><a href="#" data-social="email" aria-label="Email Lifebloom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></a><a href="#" data-social="linkedin" target="_blank" rel="noopener" aria-label="Lifebloom on LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9.5h4V21H3V9.5Zm6.5 0h3.8v1.6h.06c.53-1 1.83-2.06 3.77-2.06 4.03 0 4.77 2.65 4.77 6.1V21h-4v-5.2c0-1.24-.02-2.84-1.73-2.84-1.73 0-2 1.35-2 2.75V21h-4V9.5Z"/></svg></a></div>
         <a class="btn btn-soft" href="#" data-wa="Hi Lifebloom, I have a question about the launch."><svg viewBox="0 0 24 24" fill="currentColor" style="color:#25D366"><path d="M12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.5A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.2-1.2l-.3-.2-2.9.9.9-2.8-.2-.3A8 8 0 1 1 12 20Z"/></svg>+91 98380 43210</a>
-        <a class="btn btn-main" href="#prebook">Pre-book free</a>
+        <a class="btn btn-main" href="#prebook">Get early access</a>
       </div>
     </div>
     <p class="disclaimer">Lifebloom products are food supplements. They are not intended to diagnose, treat, cure or prevent any disease and are not a substitute for a balanced diet. If you are pregnant, breastfeeding, taking medication or have a medical condition, please speak to your doctor before starting any supplement. Product names, formats and launch timing may change before launch.</p>
@@ -605,6 +583,8 @@ var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
    localPhotos: set true after running  node download-photos.mjs
    ============================================================= */
 var CFG={brand:'Lifebloom', wa:'919838043210', saveTo:'netlify', minAge:18, maxAge:99, localPhotos:false};
+/* social links for the header and footer buttons: replace with the real accounts */
+var SOCIAL={instagram:'https://www.instagram.com/', email:'hello@example.com', linkedin:'https://www.linkedin.com/'};
 
 /* Free Unsplash photos (commercial use allowed). The block between the markers is read by download-photos.mjs */
 /* PHOTOS:START */
@@ -627,7 +607,7 @@ function setPhoto(img,key,w){
 var PRODUCTS=[
  {id:'gummies',name:'Protein Gummies',stage:'For everyday',ph:'everyday',form:'Chewable gummy',
   hook:'Protein you will actually look forward to.',
-  desc:'A chewable, on-the-go way to add protein to your day. Made for busy women who skip meals or never find time for a shake.',
+  desc:'A gummy, on-the-go way to add protein to your day. Made for busy women who skip meals or never find time for a shake.',
   points:['Chewable, no shaker or water needed','Small enough to carry in your bag','Easy to make part of your daily routine']},
  {id:'capsules',name:'Menopause Capsules',stage:'Through menopause',ph:'midlife',form:'Daily capsule',
   hook:'Steady support for a big change.',
@@ -640,11 +620,9 @@ var PRODUCTS=[
 ];
 var FAQ=[
  ['Do I pay anything to pre-book?','No. Pre-booking is completely free and you are not committing to buy. You only pay if you decide to order at launch.'],
- ['When does Lifebloom launch?','We will announce the launch date on WhatsApp first. People who pre-book hear before anyone else.'],
  ['What is in each product?','We will share the full ingredient list for every product before launch, on the label and on this site.'],
  ['Can I take these if I am pregnant or breastfeeding?','Please check with your doctor before starting any supplement if you are pregnant, breastfeeding, taking medication or have a medical condition.'],
- ['Can I pre-book for my mother or sister?','Yes. Fill in the form with their details, with their permission, so we contact the right person.'],
- ['Will you send me spam?','No. We only message you about your pre-booking and the launch. Reply STOP on WhatsApp any time and we will remove you.']
+ ['Can I pre-book for my mother or sister?','Yes. Fill in the form with their details, with their permission, so we contact the right person.']
 ];
 
 var ICK='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg>';
@@ -652,6 +630,7 @@ function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').repl
 function waURL(m){return 'https://wa.me/'+CFG.wa+'?text='+encodeURIComponent(m)}
 function openWA(m){window.open(waURL(m),'_blank','noopener')}
 $('#yr').textContent=new Date().getFullYear();
+$$('[data-social]').forEach(function(a){var k=a.dataset.social;a.href=k==='email'?'mailto:'+SOCIAL.email:SOCIAL[k]});
 d.addEventListener('click',function(e){var a=e.target.closest('[data-wa]');if(!a)return;e.preventDefault();openWA(a.getAttribute('data-wa'))});
 var hdr=$('#hdr');function sc(){hdr.classList.toggle('scrolled',scrollY>6)}addEventListener('scroll',sc,{passive:true});sc();
 
