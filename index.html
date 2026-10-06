@@ -10,7 +10,7 @@
 <meta property="og:image" content="assets/logo-stack.png" />
 <meta name="theme-color" content="#FBF8F3" />
 <link rel="icon" type="image/png" href="assets/emblem.png" />
-<link rel="preload" as="image" href="assets/stone.webp" type="image/webp" />
+<link rel="preload" as="image" href="assets/turn/f00.webp" type="image/webp" />
 <script>document.documentElement.classList.add('js')</script>
 <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
 <link rel="preconnect" href="https://images.unsplash.com" crossorigin />
@@ -121,49 +121,19 @@ section[id]{scroll-margin-top:84px}
 .drift{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
 #driftBack{z-index:2}
 #driftFront{z-index:5}
-.ped{--pw:min(calc(var(--ph,420px) * 1.04),92vw,620px);position:absolute;left:0;right:0;margin:0 auto;bottom:3%;width:var(--pw);z-index:3;
+.ped{--pw:min(calc(var(--ph,420px) * 1.1),92vw,640px);position:absolute;left:0;right:0;margin:0 auto;bottom:3%;width:var(--pw);z-index:3;
   font-size:calc(var(--pw) / 100);border:0;background:none;padding:0;cursor:pointer;opacity:0;transition:translate .8s var(--ease)}
 .ready .ped{animation:pedIn 1.4s var(--ease) .15s forwards}
 @keyframes pedIn{from{opacity:0;transform:translateY(70px)}to{opacity:1;transform:none}}
-.ped::before{content:"";position:absolute;left:7%;right:7%;bottom:-2.5%;height:13%;border-radius:50%;
+.ped::before{content:"";position:absolute;left:6%;right:6%;bottom:-1%;height:10%;border-radius:50%;
   background:radial-gradient(ellipse at center,rgba(84,48,32,.42),rgba(84,48,32,0) 70%);filter:blur(5px)}
-/* 3D gift box: 1em = 1% of the pedestal width. The camera looks down 12deg, so the base top is a 100x20 ellipse */
-.scene{position:relative;display:block;width:100em;height:92em;perspective:320em;perspective-origin:50% 40%}
-.base-side,.base-top{position:absolute;left:0;width:100em}
-.base-side{bottom:0;height:23em;border-radius:0 0 50% 50%/0 0 10em 10em;
-  background:linear-gradient(90deg,rgba(90,50,30,.32),rgba(90,50,30,0) 20%,rgba(255,255,255,.1) 46%,rgba(90,50,30,0) 76%,rgba(90,50,30,.34)),
-  linear-gradient(180deg,rgba(255,250,244,.25),rgba(90,50,30,.12)),url(assets/stone.webp) center/cover}
-.base-top{bottom:13em;height:20em;border-radius:50%;
-  background:radial-gradient(ellipse 48% 46% at 50% 56%,rgba(84,48,32,.42),rgba(84,48,32,.12) 60%,rgba(84,48,32,0) 80%),
-  linear-gradient(180deg,rgba(255,250,244,.5),rgba(255,250,244,.25)),url(assets/stone.webp) center/100% 300%;
-  box-shadow:inset 0 -.4em .5em -.3em rgba(255,255,255,.6),0 .25em 0 rgba(255,246,238,.45)}
-.spin{position:absolute;left:50%;bottom:23em;width:0;height:0;transform-style:preserve-3d;transform:rotateX(-12deg) rotateY(-28deg)}
-.cub{position:absolute;left:0;top:0;transform-style:preserve-3d;--w:62em;--h:40em}
-.cub>i{position:absolute;display:block;backface-visibility:hidden;outline:1px solid transparent;filter:brightness(var(--l,1))}
-.cub .s{width:var(--w);height:var(--h);left:calc(var(--w) / -2);top:calc(var(--h) * -1);
-  background:linear-gradient(115deg,rgba(255,255,255,0) 30%,rgba(255,255,255,.45) 45%,rgba(255,255,255,0) 60%) var(--p,50%) 0/260% 100% no-repeat,
-  linear-gradient(180deg,#F6DACF,#EDBFAF 70%,#E6B3A2)}
-.cub .s1{transform:translateZ(calc(var(--w) / 2))}
-.cub .s2{transform:rotateY(90deg) translateZ(calc(var(--w) / 2))}
-.cub .s3{transform:rotateY(180deg) translateZ(calc(var(--w) / 2))}
-.cub .s4{transform:rotateY(270deg) translateZ(calc(var(--w) / 2))}
-.cub .t{width:var(--w);height:var(--w);left:calc(var(--w) / -2);top:calc(var(--h) * -1 - var(--w) / 2);transform:rotateX(90deg);--l:1.04;
-  background:linear-gradient(90deg,transparent 42%,#C27F6B 42%,#D99F8B 50%,#B9725E 58%,transparent 58%),
-  linear-gradient(180deg,transparent 42%,#C27F6B 42%,#D99F8B 50%,#B9725E 58%,transparent 58%),
-  radial-gradient(circle at 35% 30%,#FBE6DD,#F0C7B8 70%)}
-/* ribbon down the middle of every side */
-.cub .s::before{content:"";position:absolute;top:0;bottom:0;left:42%;right:42%;
-  background:linear-gradient(90deg,#A9644F,#C98A7A 30%,#E2AE9B 50%,#C27F6B 70%,#A9644F)}
-/* the lid casts a soft shadow on the top of the box */
-.body .s::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(110,55,38,.32),rgba(110,55,38,0) 16%)}
-.lid{--w:66em;--h:10em;transform:translateY(-32em);transition:transform .8s var(--ease)}
-.lid .s{background:linear-gradient(115deg,rgba(255,255,255,0) 30%,rgba(255,255,255,.5) 45%,rgba(255,255,255,0) 60%) var(--p,50%) 0/260% 100% no-repeat,
-  linear-gradient(180deg,#F9E2D9,#F0C9BA);box-shadow:inset 0 -.35em 0 rgba(150,80,60,.18)}
-.bow{position:absolute;left:0;top:-10em;transform-style:preserve-3d}
-.bow i{position:absolute;display:block;width:34em;height:16em;left:-17em;top:-14.8em;
-  background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 140'><defs><linearGradient id='g' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='%23E4B2A0'/><stop offset='1' stop-color='%23B26B57'/></linearGradient></defs><path d='M150 128C120 70 40 20 22 52c-16 30 40 70 128 76Z' fill='url(%23g)'/><path d='M150 128C180 70 260 20 278 52c16 30-40 70-128 76Z' fill='url(%23g)'/><path d='M150 128C128 92 74 60 62 74c-10 12 30 40 88 54Z' fill='%23A9644F' opacity='.45'/><path d='M150 128C172 92 226 60 238 74c10 12-30 40-88 54Z' fill='%23A9644F' opacity='.45'/><ellipse cx='150' cy='126' rx='16' ry='12' fill='%23B9725E'/></svg>") center/contain no-repeat}
-.bow i+i{transform:rotateY(90deg)}
-.ped:hover .lid,.ped:focus-visible .lid{transform:translateY(-40em) rotateZ(-3deg)}
+/* 360 turntable: 12 photographed angles, 30deg apart, cross-faded by the script */
+.ped{touch-action:pan-y;user-select:none;-webkit-user-select:none}
+.ped.dragging{cursor:grabbing}
+.turn{position:relative;display:block;width:100%;aspect-ratio:640/560;transition:transform .7s var(--ease)}
+.turn img{position:absolute;inset:0;width:100%;height:100%;opacity:0;pointer-events:none;-webkit-user-drag:none}
+.turn img:first-child{opacity:1}
+.ped:hover .turn,.ped:focus-visible .turn{transform:translateY(-10px)}
 .peek{position:absolute;left:50%;top:-6%;transform:translate(-50%,8px);opacity:0;pointer-events:none;white-space:nowrap;
   background:var(--cocoa);color:var(--cream);font-size:.84rem;font-weight:700;padding:9px 16px;border-radius:999px;box-shadow:var(--sh-s);
   transition:opacity .35s,transform .45s var(--ease)}
@@ -463,13 +433,19 @@ fieldset{border:0}
     <div class="glow" aria-hidden="true"></div>
     <img class="giant" src="assets/giant-word.png" alt="" aria-hidden="true" width="1600" height="181">
     <button class="ped" type="button" data-goto="#prebook" aria-label="Our first products are under wraps. Pre-book to see them first.">
-      <span class="scene" aria-hidden="true">
-        <span class="base"><span class="base-side"></span><span class="base-top"></span></span>
-        <span class="spin" id="spin">
-          <span class="cub body"><i class="s s1"></i><i class="s s2"></i><i class="s s3"></i><i class="s s4"></i></span>
-          <span class="cub lid"><i class="s s1"></i><i class="s s2"></i><i class="s s3"></i><i class="s s4"></i><i class="t"></i>
-            <span class="bow"><i></i><i></i></span></span>
-        </span>
+      <span class="turn" id="turn" aria-hidden="true">
+          <img src="assets/turn/f00.webp" alt="" width="640" height="560" draggable="false">
+          <img src="assets/turn/f01.webp" alt="" width="640" height="560" draggable="false">
+          <img src="assets/turn/f02.webp" alt="" width="640" height="560" draggable="false">
+          <img src="assets/turn/f03.webp" alt="" width="640" height="560" draggable="false">
+          <img src="assets/turn/f04.webp" alt="" width="640" height="560" draggable="false">
+          <img src="assets/turn/f05.webp" alt="" width="640" height="560" draggable="false">
+          <img src="assets/turn/f06.webp" alt="" width="640" height="560" draggable="false">
+          <img src="assets/turn/f07.webp" alt="" width="640" height="560" draggable="false">
+          <img src="assets/turn/f08.webp" alt="" width="640" height="560" draggable="false">
+          <img src="assets/turn/f09.webp" alt="" width="640" height="560" draggable="false">
+          <img src="assets/turn/f10.webp" alt="" width="640" height="560" draggable="false">
+          <img src="assets/turn/f11.webp" alt="" width="640" height="560" draggable="false">
       </span>
       <span class="peek" aria-hidden="true">Not yet. Pre-book to see it first.</span>
     </button>
@@ -741,24 +717,30 @@ else{
   raf=requestAnimationFrame(loop);
 })();
 
-/* ---------- hero: the gift box turns on its stone base, each side lit as it faces the light ---------- */
+/* ---------- hero: draped pedestal turns 360deg; drag it to turn it yourself ---------- */
 (function(){
-  var spin=$('#spin');if(!spin)return;
-  var sides=[$$('.body .s',spin),$$('.lid .s',spin)],a=-28,last=0,on=true,raf=0;
+  var ped=$('.ped'),fr=$$('#turn img'),N=fr.length,STEP=360/N,a=0,last=0,on=true,raf=0,drag=null,moved=false;
   function paint(){
-    spin.style.transform='rotateX(-12deg) rotateY('+a.toFixed(2)+'deg)';
-    sides.forEach(function(set){set.forEach(function(f,i){var r=(a+i*90)*Math.PI/180,sn=Math.sin(r),cs=Math.cos(r);
-      f.style.setProperty('--l',(.8+.28*Math.max(0,-.45*sn+.89*cs)).toFixed(3));
-      f.style.setProperty('--p',(50+sn*80).toFixed(1)+'%')})});
+    var p=((a%360)+360)%360/STEP,i=Math.floor(p)%N,t=p-Math.floor(p),j=(i+1)%N;
+    fr.forEach(function(im,k){im.style.opacity=k===i?1:k===j?t.toFixed(3):0;im.style.zIndex=k===j?2:k===i?1:0});
   }
-  paint();if(reduce)return;
-  /* one full turn every 12 seconds; pauses while the hero is off screen */
-  function loop(t){if(!on){raf=0;return}if(last)a+=(t-last)*.03;last=t;if(a>360)a-=360;paint();raf=requestAnimationFrame(loop)}
-  if('IntersectionObserver' in window)new IntersectionObserver(function(es){on=es[0].isIntersecting;last=0;if(on&&!raf)raf=requestAnimationFrame(loop)}).observe($('#hero'));
-  raf=requestAnimationFrame(loop);
+  paint();
+  /* one full turn every 10 seconds; stops while the hero is off screen or while dragging */
+  function loop(t){if(!on){raf=0;return}if(last&&!drag)a+=(t-last)*.036;last=t;paint();raf=requestAnimationFrame(loop)}
+  if(!reduce){
+    if('IntersectionObserver' in window)new IntersectionObserver(function(es){on=es[0].isIntersecting;last=0;if(on&&!raf)raf=requestAnimationFrame(loop)}).observe($('#hero'));
+    raf=requestAnimationFrame(loop);
+  }
+  ped.addEventListener('pointerdown',function(e){drag={x:e.clientX,a:a};moved=false});
+  addEventListener('pointermove',function(e){if(!drag)return;var dx=e.clientX-drag.x;
+    if(Math.abs(dx)>6){moved=true;ped.classList.add('dragging')}if(moved){a=drag.a-dx*.6;if(reduce)paint()}});
+  addEventListener('pointerup',function(){drag=null;ped.classList.remove('dragging')});
+  addEventListener('pointercancel',function(){drag=null;moved=false;ped.classList.remove('dragging')});
+  /* a drag is not a click: don't jump to the form after turning it */
+  ped.addEventListener('click',function(e){if(moved){e.preventDefault();e.stopImmediatePropagation();moved=false}},true);
 })();
 
-/* the box is sized from the podium's height (set in --ph) so the whole hero fits one screen */
+/* the pedestal is sized from the podium's height (set in --ph) so the whole hero fits one screen */
 (function(){var pod=$('#podium');function fit(){pod.style.setProperty('--ph',pod.clientHeight+'px')}
   fit();if('ResizeObserver' in window)new ResizeObserver(fit).observe(pod);else addEventListener('resize',fit)})();
 
