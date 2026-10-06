@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-<title>Lifebloom | Pre-book women's wellness: Protein Gummies, Menopause Capsules, Post-natal Support</title>
-<meta name="description" content="Lifebloom is a new women's wellness brand. Pre-book Protein Gummies, Menopause Capsules and Post-natal Support free, and be first in line at launch." />
+<title>Lifebloom | Pre-book women's wellness: Protein Gummies, MenoBalance, Post-natal Support</title>
+<meta name="description" content="Lifebloom is a new women's wellness brand. Pre-book Protein Gummies, MenoBalance menopause capsules and Post-natal Support free, and be first in line at launch." />
 <meta property="og:title" content="Lifebloom | A healthier, brighter you" />
 <meta property="og:description" content="Wellness for every season of a woman's life. Pre-book free, no payment now." />
 <meta property="og:image" content="assets/logo-stack.png" />
 <meta name="theme-color" content="#FBF8F3" />
 <link rel="icon" type="image/png" href="assets/emblem.png" />
-<link rel="preload" as="image" href="assets/pedestal-blush.webp" type="image/webp" />
+<link rel="preload" as="image" href="assets/stone.webp" type="image/webp" />
 <script>document.documentElement.classList.add('js')</script>
 <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
 <link rel="preconnect" href="https://images.unsplash.com" crossorigin />
@@ -121,18 +121,48 @@ section[id]{scroll-margin-top:84px}
 #driftBack{z-index:2}
 #driftFront{z-index:5}
 .ped{position:absolute;left:50%;bottom:3%;width:clamp(300px,35vw,450px);margin-left:calc(clamp(300px,35vw,450px) / -2);z-index:3;
-  border:0;background:none;padding:0;cursor:pointer;opacity:0;transition:translate .8s var(--ease)}
+  font-size:calc(clamp(300px,35vw,450px) / 100);border:0;background:none;padding:0;cursor:pointer;opacity:0;transition:translate .8s var(--ease)}
 .ready .ped{animation:pedIn 1.4s var(--ease) .15s forwards}
 @keyframes pedIn{from{opacity:0;transform:translateY(70px)}to{opacity:1;transform:none}}
-.ped img{position:relative;width:100%;height:auto;filter:drop-shadow(0 26px 24px rgba(63,38,25,.15));transition:transform .7s var(--ease),filter .7s}
 .ped::before{content:"";position:absolute;left:7%;right:7%;bottom:-2.5%;height:13%;border-radius:50%;
-  background:radial-gradient(ellipse at center,rgba(84,48,32,.42),rgba(84,48,32,0) 70%);filter:blur(5px);transition:transform .7s var(--ease),opacity .7s}
-/* slow turntable spin on the pedestal */
-.ped{perspective:1600px}
-.ready .ped img{animation:pedSpin 9s linear 1.6s infinite}
-@keyframes pedSpin{from{rotate:y 0deg}to{rotate:y 360deg}}
-.ped:hover img,.ped:focus-visible img{transform:translateY(-10px);filter:drop-shadow(0 38px 30px rgba(63,38,25,.2))}
-.ped:hover::before,.ped:focus-visible::before{transform:scale(.9);opacity:.7}
+  background:radial-gradient(ellipse at center,rgba(84,48,32,.42),rgba(84,48,32,0) 70%);filter:blur(5px)}
+/* 3D gift box: 1em = 1% of the pedestal width. The camera looks down 12deg, so the base top is a 100x20 ellipse */
+.scene{position:relative;display:block;width:100em;height:78em;perspective:320em;perspective-origin:50% 40%}
+.base-side,.base-top{position:absolute;left:0;width:100em}
+.base-side{bottom:0;height:23em;border-radius:0 0 50% 50%/0 0 10em 10em;
+  background:linear-gradient(90deg,rgba(90,50,30,.32),rgba(90,50,30,0) 20%,rgba(255,255,255,.1) 46%,rgba(90,50,30,0) 76%,rgba(90,50,30,.34)),
+  linear-gradient(180deg,rgba(255,250,244,.25),rgba(90,50,30,.12)),url(assets/stone.webp) center/cover}
+.base-top{bottom:13em;height:20em;border-radius:50%;
+  background:radial-gradient(ellipse 38% 42% at 50% 56%,rgba(84,48,32,.42),rgba(84,48,32,.12) 60%,rgba(84,48,32,0) 80%),
+  linear-gradient(180deg,rgba(255,250,244,.5),rgba(255,250,244,.25)),url(assets/stone.webp) center/100% 300%;
+  box-shadow:inset 0 -.4em .5em -.3em rgba(255,255,255,.6),0 .25em 0 rgba(255,246,238,.45)}
+.spin{position:absolute;left:50%;bottom:23em;width:0;height:0;transform-style:preserve-3d;transform:rotateX(-12deg) rotateY(-28deg)}
+.cub{position:absolute;left:0;top:0;transform-style:preserve-3d;--w:46em;--h:30em}
+.cub>i{position:absolute;display:block;backface-visibility:hidden;outline:1px solid transparent;filter:brightness(var(--l,1))}
+.cub .s{width:var(--w);height:var(--h);left:calc(var(--w) / -2);top:calc(var(--h) * -1);
+  background:linear-gradient(115deg,rgba(255,255,255,0) 30%,rgba(255,255,255,.45) 45%,rgba(255,255,255,0) 60%) var(--p,50%) 0/260% 100% no-repeat,
+  linear-gradient(180deg,#F6DACF,#EDBFAF 70%,#E6B3A2)}
+.cub .s1{transform:translateZ(calc(var(--w) / 2))}
+.cub .s2{transform:rotateY(90deg) translateZ(calc(var(--w) / 2))}
+.cub .s3{transform:rotateY(180deg) translateZ(calc(var(--w) / 2))}
+.cub .s4{transform:rotateY(270deg) translateZ(calc(var(--w) / 2))}
+.cub .t{width:var(--w);height:var(--w);left:calc(var(--w) / -2);top:calc(var(--h) * -1 - var(--w) / 2);transform:rotateX(90deg);--l:1.04;
+  background:linear-gradient(90deg,transparent 42%,#C27F6B 42%,#D99F8B 50%,#B9725E 58%,transparent 58%),
+  linear-gradient(180deg,transparent 42%,#C27F6B 42%,#D99F8B 50%,#B9725E 58%,transparent 58%),
+  radial-gradient(circle at 35% 30%,#FBE6DD,#F0C7B8 70%)}
+/* ribbon down the middle of every side */
+.cub .s::before{content:"";position:absolute;top:0;bottom:0;left:42%;right:42%;
+  background:linear-gradient(90deg,#A9644F,#C98A7A 30%,#E2AE9B 50%,#C27F6B 70%,#A9644F)}
+/* the lid casts a soft shadow on the top of the box */
+.body .s::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(110,55,38,.32),rgba(110,55,38,0) 16%)}
+.lid{--w:49em;--h:8em;transform:translateY(-24em);transition:transform .8s var(--ease)}
+.lid .s{background:linear-gradient(115deg,rgba(255,255,255,0) 30%,rgba(255,255,255,.5) 45%,rgba(255,255,255,0) 60%) var(--p,50%) 0/260% 100% no-repeat,
+  linear-gradient(180deg,#F9E2D9,#F0C9BA);box-shadow:inset 0 -.35em 0 rgba(150,80,60,.18)}
+.bow{position:absolute;left:0;top:-8em;transform-style:preserve-3d}
+.bow i{position:absolute;display:block;width:26em;height:12em;left:-13em;top:-11.2em;
+  background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 140'><defs><linearGradient id='g' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='%23E4B2A0'/><stop offset='1' stop-color='%23B26B57'/></linearGradient></defs><path d='M150 128C120 70 40 20 22 52c-16 30 40 70 128 76Z' fill='url(%23g)'/><path d='M150 128C180 70 260 20 278 52c16 30-40 70-128 76Z' fill='url(%23g)'/><path d='M150 128C128 92 74 60 62 74c-10 12 30 40 88 54Z' fill='%23A9644F' opacity='.45'/><path d='M150 128C172 92 226 60 238 74c10 12-30 40-88 54Z' fill='%23A9644F' opacity='.45'/><ellipse cx='150' cy='126' rx='16' ry='12' fill='%23B9725E'/></svg>") center/contain no-repeat}
+.bow i+i{transform:rotateY(90deg)}
+.ped:hover .lid,.ped:focus-visible .lid{transform:translateY(-32em) rotateZ(-3deg)}
 .peek{position:absolute;left:50%;top:-6%;transform:translate(-50%,8px);opacity:0;pointer-events:none;white-space:nowrap;
   background:var(--cocoa);color:var(--cream);font-size:.84rem;font-weight:700;padding:9px 16px;border-radius:999px;box-shadow:var(--sh-s);
   transition:opacity .35s,transform .45s var(--ease)}
@@ -346,7 +376,7 @@ fieldset{border:0}
   .hero{padding:24px 0 64px}
   .podium{height:390px}
   .podium .giant{top:28%;width:96vw}
-  .ped{width:300px;margin-left:-150px}
+  .ped{width:300px;margin-left:-150px;font-size:3px}
   .peek{font-size:.76rem}
   .hero-cta .btn{flex:1 1 100%}
   .manifesto{padding:90px 0 80px}
@@ -424,7 +454,14 @@ fieldset{border:0}
     <div class="glow" aria-hidden="true"></div>
     <img class="giant" src="assets/giant-word.png" alt="" aria-hidden="true" width="1600" height="181">
     <button class="ped" type="button" data-goto="#prebook" aria-label="Our first products are under wraps. Pre-book to see them first.">
-      <img src="assets/pedestal-blush.webp" alt="" width="1100" height="785" fetchpriority="high">
+      <span class="scene" aria-hidden="true">
+        <span class="base"><span class="base-side"></span><span class="base-top"></span></span>
+        <span class="spin" id="spin">
+          <span class="cub body"><i class="s s1"></i><i class="s s2"></i><i class="s s3"></i><i class="s s4"></i></span>
+          <span class="cub lid"><i class="s s1"></i><i class="s s2"></i><i class="s s3"></i><i class="s s4"></i><i class="t"></i>
+            <span class="bow"><i></i><i></i></span></span>
+        </span>
+      </span>
       <span class="peek" aria-hidden="true">Not yet. Pre-book to see it first.</span>
     </button>
   </div>
@@ -609,10 +646,11 @@ var PRODUCTS=[
   hook:'Protein you will actually look forward to.',
   desc:'A gummy, on-the-go way to add protein to your day. Made for busy women who skip meals or never find time for a shake.',
   points:['Chewable, no shaker or water needed','Small enough to carry in your bag','Easy to make part of your daily routine']},
- {id:'capsules',name:'Menopause Capsules',stage:'Through menopause',ph:'midlife',form:'Daily capsule',
+ {id:'capsules',name:'MenoBalance',stage:'Your menopause companion',ph:'midlife',form:'Daily capsule',
   hook:'Steady support for a big change.',
-  desc:'A daily capsule designed for women going through perimenopause and menopause, as part of a balanced routine.',
-  points:['One simple daily habit','Made for perimenopause and beyond','Easy-to-swallow capsule']},
+  desc:'A daily capsule designed for women going through perimenopause and menopause.',
+  points:['One simple daily ritual','Made for perimenopause and beyond','Gentle, easy-to-swallow capsule'],
+  cta:'Reserve Your MenoBalance'},
  {id:'postnatal',name:'Post-natal Support',stage:'After childbirth',ph:'postnatal',form:'Daily supplement',
   hook:'Care for the mother, too.',
   desc:'Nourishment for the months after giving birth, when your body has been through so much and your own needs often come last.',
@@ -692,6 +730,23 @@ else{
   raf=requestAnimationFrame(loop);
 })();
 
+/* ---------- hero: the gift box turns on its stone base, each side lit as it faces the light ---------- */
+(function(){
+  var spin=$('#spin');if(!spin)return;
+  var sides=[$$('.body .s',spin),$$('.lid .s',spin)],a=-28,last=0,on=true,raf=0;
+  function paint(){
+    spin.style.transform='rotateX(-12deg) rotateY('+a.toFixed(2)+'deg)';
+    sides.forEach(function(set){set.forEach(function(f,i){var r=(a+i*90)*Math.PI/180,sn=Math.sin(r),cs=Math.cos(r);
+      f.style.setProperty('--l',(.8+.28*Math.max(0,-.45*sn+.89*cs)).toFixed(3));
+      f.style.setProperty('--p',(50+sn*80).toFixed(1)+'%')})});
+  }
+  paint();if(reduce)return;
+  /* one full turn every 12 seconds; pauses while the hero is off screen */
+  function loop(t){if(!on){raf=0;return}if(last)a+=(t-last)*.03;last=t;if(a>360)a-=360;paint();raf=requestAnimationFrame(loop)}
+  if('IntersectionObserver' in window)new IntersectionObserver(function(es){on=es[0].isIntersecting;last=0;if(on&&!raf)raf=requestAnimationFrame(loop)}).observe($('#hero'));
+  raf=requestAnimationFrame(loop);
+})();
+
 /* the pedestal is the way in: click it to pre-book */
 $('.ped').addEventListener('click',function(){$('#prebook').scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'});
   setTimeout(function(){$('#f-name').focus({preventScroll:true})},reduce?0:700)});
@@ -724,7 +779,7 @@ info.innerHTML=PRODUCTS.map(function(p,i){
   return '<div class="info-panel'+(i===0?' on':'')+'" id="panel-'+p.id+'" role="tabpanel" aria-labelledby="tab-'+p.id+'">'+
     '<span class="stage-tag">'+p.stage+'</span><h3>'+p.name+'</h3><p class="hook">'+p.hook+'</p><p class="desc">'+p.desc+'</p>'+
     '<ul class="points">'+p.points.map(function(x){return '<li><b>&#10047;</b><span>'+x+'</span></li>'}).join('')+'</ul>'+
-    '<button class="btn btn-main" data-pick="'+p.id+'">Pre-book '+p.name+'</button></div>'}).join('');
+    '<button class="btn btn-main" data-pick="'+p.id+'">'+(p.cta||'Pre-book '+p.name)+'</button></div>'}).join('');
 function thumb(p){return '<span class="thumb"><img data-th="'+p.ph+'" alt=""></span>'}
 sw.innerHTML=PRODUCTS.map(function(p,i){
   return '<button class="sw" role="tab" id="tab-'+p.id+'" aria-controls="panel-'+p.id+'" aria-selected="'+(i===0)+'" tabindex="'+(i===0?0:-1)+'" data-sw="'+p.id+'">'+
