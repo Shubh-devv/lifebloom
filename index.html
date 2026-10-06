@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-<title>Lifebloom | Pre-book women's wellness: Protein Gummies, MenoBalance, Post-natal Support</title>
-<meta name="description" content="Lifebloom is a new women's wellness brand. Pre-book Protein Gummies, MenoBalance menopause capsules and Post-natal Support free, and be first in line at launch." />
+<title>Lifebloom | Pre-book women's wellness: Daily Protein, MenoBalance, MotherWell, Menstrual Comfort</title>
+<meta name="description" content="Lifebloom is a new women's wellness brand. Pre-book Daily Protein gummies, MenoBalance, MotherWell and Menstrual Comfort free, and be first in line at launch." />
 <meta property="og:title" content="Lifebloom | A healthier, brighter you" />
 <meta property="og:description" content="Wellness for every season of a woman's life. Pre-book free, no payment now." />
 <meta property="og:image" content="assets/logo-stack.png" />
@@ -97,10 +97,11 @@ section[id]{scroll-margin-top:84px}
 .social-ftr svg{width:20px;height:20px}
 
 /* ================= HERO: studio reveal ================= */
-.hero{position:relative;overflow:hidden;text-align:center;padding:30px 0 84px;
+.hero{position:relative;overflow:hidden;text-align:center;padding:18px 0 30px;display:flex;flex-direction:column;min-height:calc(100svh - 76px);
   background:linear-gradient(180deg,#F9EEE8 0%,#F5E2D9 55%,#F2D9CD 100%)}
 .hero-copy,.hero-foot{position:relative;z-index:6}
-.hero .tagline{display:inline-block;margin-bottom:20px}
+.hero .tagline{display:inline-block;margin-bottom:12px}
+.hero h1{font-size:clamp(2.6rem,min(6.4vw,8.5vh),5.6rem)}
 .hero h1 .ln{display:block;overflow:hidden;padding-bottom:.06em}
 .hero h1 .ln>span{display:inline-block}
 .js .hero h1 .ln>span{transform:translateY(105%)}
@@ -109,7 +110,7 @@ section[id]{scroll-margin-top:84px}
 .ready .hero h1 .ln:nth-child(2)>span{transition-delay:.12s}
 .ready .hero .fade-in{transform:none;opacity:1;transition:transform 1s var(--ease),opacity 1s;transition-delay:var(--d,.3s)}
 /* the set: no z-index here, so wall, word, petals and pedestal can layer with the hero */
-.podium{position:relative;height:clamp(390px,42vw,540px);margin-top:4px}
+.podium{position:relative;flex:1 1 auto;min-height:280px;margin-top:4px}
 .podium .floor{position:absolute;left:50%;width:100vw;margin-left:-50vw;top:74%;height:1000px;z-index:0;
   background:linear-gradient(180deg,#E9CBBD 0%,#F0DBD1 3%,#F6E9E2 22%,#FAF3EE 48%,#FBF8F3 75%)}
 .podium .floor::before{content:"";position:absolute;left:0;right:0;top:-40px;height:40px;
@@ -120,24 +121,24 @@ section[id]{scroll-margin-top:84px}
 .drift{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
 #driftBack{z-index:2}
 #driftFront{z-index:5}
-.ped{position:absolute;left:50%;bottom:3%;width:clamp(300px,35vw,450px);margin-left:calc(clamp(300px,35vw,450px) / -2);z-index:3;
-  font-size:calc(clamp(300px,35vw,450px) / 100);border:0;background:none;padding:0;cursor:pointer;opacity:0;transition:translate .8s var(--ease)}
+.ped{--pw:min(calc(var(--ph,420px) * 1.04),92vw,620px);position:absolute;left:0;right:0;margin:0 auto;bottom:3%;width:var(--pw);z-index:3;
+  font-size:calc(var(--pw) / 100);border:0;background:none;padding:0;cursor:pointer;opacity:0;transition:translate .8s var(--ease)}
 .ready .ped{animation:pedIn 1.4s var(--ease) .15s forwards}
 @keyframes pedIn{from{opacity:0;transform:translateY(70px)}to{opacity:1;transform:none}}
 .ped::before{content:"";position:absolute;left:7%;right:7%;bottom:-2.5%;height:13%;border-radius:50%;
   background:radial-gradient(ellipse at center,rgba(84,48,32,.42),rgba(84,48,32,0) 70%);filter:blur(5px)}
 /* 3D gift box: 1em = 1% of the pedestal width. The camera looks down 12deg, so the base top is a 100x20 ellipse */
-.scene{position:relative;display:block;width:100em;height:78em;perspective:320em;perspective-origin:50% 40%}
+.scene{position:relative;display:block;width:100em;height:92em;perspective:320em;perspective-origin:50% 40%}
 .base-side,.base-top{position:absolute;left:0;width:100em}
 .base-side{bottom:0;height:23em;border-radius:0 0 50% 50%/0 0 10em 10em;
   background:linear-gradient(90deg,rgba(90,50,30,.32),rgba(90,50,30,0) 20%,rgba(255,255,255,.1) 46%,rgba(90,50,30,0) 76%,rgba(90,50,30,.34)),
   linear-gradient(180deg,rgba(255,250,244,.25),rgba(90,50,30,.12)),url(assets/stone.webp) center/cover}
 .base-top{bottom:13em;height:20em;border-radius:50%;
-  background:radial-gradient(ellipse 38% 42% at 50% 56%,rgba(84,48,32,.42),rgba(84,48,32,.12) 60%,rgba(84,48,32,0) 80%),
+  background:radial-gradient(ellipse 48% 46% at 50% 56%,rgba(84,48,32,.42),rgba(84,48,32,.12) 60%,rgba(84,48,32,0) 80%),
   linear-gradient(180deg,rgba(255,250,244,.5),rgba(255,250,244,.25)),url(assets/stone.webp) center/100% 300%;
   box-shadow:inset 0 -.4em .5em -.3em rgba(255,255,255,.6),0 .25em 0 rgba(255,246,238,.45)}
 .spin{position:absolute;left:50%;bottom:23em;width:0;height:0;transform-style:preserve-3d;transform:rotateX(-12deg) rotateY(-28deg)}
-.cub{position:absolute;left:0;top:0;transform-style:preserve-3d;--w:46em;--h:30em}
+.cub{position:absolute;left:0;top:0;transform-style:preserve-3d;--w:62em;--h:40em}
 .cub>i{position:absolute;display:block;backface-visibility:hidden;outline:1px solid transparent;filter:brightness(var(--l,1))}
 .cub .s{width:var(--w);height:var(--h);left:calc(var(--w) / -2);top:calc(var(--h) * -1);
   background:linear-gradient(115deg,rgba(255,255,255,0) 30%,rgba(255,255,255,.45) 45%,rgba(255,255,255,0) 60%) var(--p,50%) 0/260% 100% no-repeat,
@@ -155,24 +156,24 @@ section[id]{scroll-margin-top:84px}
   background:linear-gradient(90deg,#A9644F,#C98A7A 30%,#E2AE9B 50%,#C27F6B 70%,#A9644F)}
 /* the lid casts a soft shadow on the top of the box */
 .body .s::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(110,55,38,.32),rgba(110,55,38,0) 16%)}
-.lid{--w:49em;--h:8em;transform:translateY(-24em);transition:transform .8s var(--ease)}
+.lid{--w:66em;--h:10em;transform:translateY(-32em);transition:transform .8s var(--ease)}
 .lid .s{background:linear-gradient(115deg,rgba(255,255,255,0) 30%,rgba(255,255,255,.5) 45%,rgba(255,255,255,0) 60%) var(--p,50%) 0/260% 100% no-repeat,
   linear-gradient(180deg,#F9E2D9,#F0C9BA);box-shadow:inset 0 -.35em 0 rgba(150,80,60,.18)}
-.bow{position:absolute;left:0;top:-8em;transform-style:preserve-3d}
-.bow i{position:absolute;display:block;width:26em;height:12em;left:-13em;top:-11.2em;
+.bow{position:absolute;left:0;top:-10em;transform-style:preserve-3d}
+.bow i{position:absolute;display:block;width:34em;height:16em;left:-17em;top:-14.8em;
   background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 140'><defs><linearGradient id='g' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='%23E4B2A0'/><stop offset='1' stop-color='%23B26B57'/></linearGradient></defs><path d='M150 128C120 70 40 20 22 52c-16 30 40 70 128 76Z' fill='url(%23g)'/><path d='M150 128C180 70 260 20 278 52c16 30-40 70-128 76Z' fill='url(%23g)'/><path d='M150 128C128 92 74 60 62 74c-10 12 30 40 88 54Z' fill='%23A9644F' opacity='.45'/><path d='M150 128C172 92 226 60 238 74c10 12-30 40-88 54Z' fill='%23A9644F' opacity='.45'/><ellipse cx='150' cy='126' rx='16' ry='12' fill='%23B9725E'/></svg>") center/contain no-repeat}
 .bow i+i{transform:rotateY(90deg)}
-.ped:hover .lid,.ped:focus-visible .lid{transform:translateY(-32em) rotateZ(-3deg)}
+.ped:hover .lid,.ped:focus-visible .lid{transform:translateY(-40em) rotateZ(-3deg)}
 .peek{position:absolute;left:50%;top:-6%;transform:translate(-50%,8px);opacity:0;pointer-events:none;white-space:nowrap;
   background:var(--cocoa);color:var(--cream);font-size:.84rem;font-weight:700;padding:9px 16px;border-radius:999px;box-shadow:var(--sh-s);
   transition:opacity .35s,transform .45s var(--ease)}
 .peek::after{content:"";position:absolute;left:50%;bottom:-5px;width:10px;height:10px;background:var(--cocoa);transform:translateX(-50%) rotate(45deg)}
 .ped:hover .peek,.ped:focus-visible .peek{opacity:1;transform:translate(-50%,0)}
 @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
-.hero-foot{margin-top:34px}
+.hero-foot{margin-top:14px}
 .hero-foot .lede{margin:0 auto}
-.hero-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:26px}
-.assure{list-style:none;display:flex;gap:10px 24px;justify-content:center;flex-wrap:wrap;margin-top:22px;font-size:.92rem;font-weight:500;color:var(--cocoa-2)}
+.hero-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:18px}
+.assure{list-style:none;display:flex;gap:10px 24px;justify-content:center;flex-wrap:wrap;margin-top:14px;font-size:.92rem;font-weight:500;color:var(--cocoa-2)}
 .assure li{display:flex;align-items:center;gap:8px}
 .assure svg{width:17px;height:17px;color:var(--rose)}
 .thumb.nophoto{background:radial-gradient(circle at 50% 40%,#F7E6DE,#E2BCAE)}
@@ -196,7 +197,7 @@ section[id]{scroll-margin-top:84px}
 .rot-cta{display:flex;gap:10px}
 .rot-cta .btn{padding:.8rem 1.35rem;font-size:.92rem}
 .rot-nav{grid-column:1/-1;display:flex;align-items:center;gap:16px}
-.rot-tabs{flex:1;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.rot-tabs{flex:1;display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
 .rot-tab{background:none;border:0;text-align:left;padding:10px 0 0;font-size:.86rem;font-weight:700;color:var(--muted);position:relative;transition:color .3s}
 .rot-tab::before,.rot-tab i{content:"";position:absolute;left:0;top:0;height:2px;border-radius:2px}
 .rot-tab::before{right:0;background:var(--line)}
@@ -225,6 +226,7 @@ section[id]{scroll-margin-top:84px}
   display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center;padding:56px 60px;overflow:hidden;min-height:580px}
 .showcase[data-p="capsules"]{--tint:#EFE3D6}
 .showcase[data-p="postnatal"]{--tint:#F3E5DE}
+.showcase[data-p="cycle"]{--tint:#F2DCD8}
 .sc-photo{position:relative;width:100%;max-width:420px;aspect-ratio:4/5;margin:0 auto;border-radius:999px 999px 30px 30px;overflow:hidden;box-shadow:var(--sh);background:var(--blush)}
 .sc-photo::before{content:"";position:absolute;inset:26%;background:url(assets/emblem.png) center/contain no-repeat;opacity:.5}
 .sc-photo img.broken{display:none}
@@ -243,7 +245,7 @@ section[id]{scroll-margin-top:84px}
 .points{list-style:none;margin:24px 0 30px;border-top:1px solid rgba(63,38,25,.14)}
 .points li{padding:12px 0;border-bottom:1px solid rgba(63,38,25,.14);font-weight:500;display:flex;gap:12px}
 .points li b{font-family:var(--serif);font-weight:400;color:var(--rose-ink);min-width:24px}
-.switch{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}
+.switch{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:18px}
 .sw{display:flex;align-items:center;gap:14px;text-align:left;background:var(--white);border:1.5px solid var(--line);border-radius:22px;padding:10px 16px 10px 10px;
   transition:border-color .3s,transform .3s var(--ease),box-shadow .3s}
 .sw:hover{transform:translateY(-2px);box-shadow:var(--sh-s)}
@@ -357,6 +359,7 @@ fieldset{border:0}
 @media (max-width:1020px){
   .showcase{grid-template-columns:1fr;padding:44px 34px;gap:26px}
   .sc-photo{max-width:340px}
+  .switch{grid-template-columns:1fr 1fr}
   .prebook{grid-template-columns:1fr;padding:56px 40px;gap:36px}
   .pb-ped{max-width:280px;margin:28px auto 0}
 }
@@ -373,10 +376,8 @@ fieldset{border:0}
   .social-hdr a{width:32px;height:32px}
   .social-hdr svg{width:14px;height:14px}
   .hdr .btn{padding:.66rem 1rem;font-size:.88rem}
-  .hero{padding:24px 0 64px}
-  .podium{height:390px}
+  .hero{padding:14px 0 22px;min-height:calc(100svh - 64px - 76px - env(safe-area-inset-bottom))}
   .podium .giant{top:28%;width:96vw}
-  .ped{width:300px;margin-left:-150px;font-size:3px}
   .peek{font-size:.76rem}
   .hero-cta .btn{flex:1 1 100%}
   .manifesto{padding:90px 0 80px}
@@ -480,7 +481,7 @@ fieldset{border:0}
   <canvas class="drift" id="driftFront" aria-hidden="true"></canvas>
 </section>
 
-<section class="rot" id="rot" aria-roledescription="carousel" aria-label="Our first three products">
+<section class="rot" id="rot" aria-roledescription="carousel" aria-label="Our first four products">
   <div class="shell rot-in">
     <div class="rot-stage" id="rotStage"></div>
     <div class="rot-cta">
@@ -508,7 +509,7 @@ fieldset{border:0}
 <section class="sec" id="products" style="padding-top:20px">
   <div class="shell">
     <div class="showcase" id="showcase" data-p="gummies">
-      <div class="sc-photo" id="scPhoto" aria-hidden="true"><span class="form-tag"><i></i><span id="formTag">Chewable gummy</span></span></div>
+      <div class="sc-photo" id="scPhoto" aria-hidden="true"><span class="form-tag"><i></i><span id="formTag">Protein gummy</span></span></div>
       <div class="info" id="info"></div>
     </div>
     <div class="switch" role="tablist" aria-label="Choose a product" id="switch"></div>
@@ -642,19 +643,26 @@ function setPhoto(img,key,w){
 }
 
 var PRODUCTS=[
- {id:'gummies',name:'Protein Gummies',stage:'For everyday',ph:'everyday',form:'Chewable gummy',
-  hook:'Protein you will actually look forward to.',
-  desc:'A gummy, on-the-go way to add protein to your day. Made for busy women who skip meals or never find time for a shake.',
-  points:['Chewable, no shaker or water needed','Small enough to carry in your bag','Easy to make part of your daily routine']},
+ {id:'gummies',name:'Daily Protein',stage:'Smart snacking',ph:'everyday',form:'Protein gummy',
+  hook:'The easiest protein habit you\'ll have.',
+  desc:'Gummies that fit into your day as easily as a snack, because that\'s exactly what they are.',
+  points:['4g protein per gummy','No prep. No mess.','Smart snacking, anytime'],
+  cta:'Reserve your Daily Protein'},
  {id:'capsules',name:'MenoBalance',stage:'Your menopause companion',ph:'midlife',form:'Daily capsule',
   hook:'Steady support for a big change.',
   desc:'A daily capsule designed for women going through perimenopause and menopause.',
   points:['One simple daily ritual','Made for perimenopause and beyond','Gentle, easy-to-swallow capsule'],
   cta:'Reserve Your MenoBalance'},
- {id:'postnatal',name:'Post-natal Support',stage:'After childbirth',ph:'postnatal',form:'Daily supplement',
+ {id:'postnatal',name:'MotherWell',stage:'After childbirth',ph:'postnatal',form:'Daily supplement',
   hook:'Care for the mother, too.',
-  desc:'Nourishment for the months after giving birth, when your body has been through so much and your own needs often come last.',
-  points:['Made for new mothers','A simple daily routine','Talk to your doctor first if you are breastfeeding']}
+  desc:'The months after birth ask a lot of your body, and your own needs often come last. A small act of care that fits into even the busiest days.',
+  points:['Made for new mothers','One simple step in your daily routine','Please check with your doctor first if you are breastfeeding'],
+  cta:'Reserve Your MotherWell'},
+ {id:'cycle',name:'Menstrual Comfort',stage:'For your cycle',ph:'hero',form:'Daily supplement',
+  hook:'Because your period shouldn\'t run your day.',
+  desc:'Period days can feel heavy. A daily supplement made to support you through your cycle, as part of a routine that looks after you all month long.',
+  points:['Made for your monthly cycle','A simple daily routine','Easy-to-take supplement'],
+  cta:'Reserve your Menstrual Comfort'}
 ];
 var FAQ=[
  ['Do I pay anything to pre-book?','No. Pre-booking is completely free and you are not committing to buy. You only pay if you decide to order at launch.'],
@@ -746,6 +754,10 @@ else{
   if('IntersectionObserver' in window)new IntersectionObserver(function(es){on=es[0].isIntersecting;last=0;if(on&&!raf)raf=requestAnimationFrame(loop)}).observe($('#hero'));
   raf=requestAnimationFrame(loop);
 })();
+
+/* the box is sized from the podium's height (set in --ph) so the whole hero fits one screen */
+(function(){var pod=$('#podium');function fit(){pod.style.setProperty('--ph',pod.clientHeight+'px')}
+  fit();if('ResizeObserver' in window)new ResizeObserver(fit).observe(pod);else addEventListener('resize',fit)})();
 
 /* the pedestal is the way in: click it to pre-book */
 $('.ped').addEventListener('click',function(){$('#prebook').scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'});
