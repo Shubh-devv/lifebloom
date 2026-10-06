@@ -110,14 +110,15 @@ section[id]{scroll-margin-top:84px}
 .ready .hero h1 .ln:nth-child(2)>span{transition-delay:.12s}
 .ready .hero .fade-in{transform:none;opacity:1;transition:transform 1s var(--ease),opacity 1s;transition-delay:var(--d,.3s)}
 /* the set: no z-index here, so wall, word, petals and pedestal can layer with the hero */
-.podium{position:relative;flex:1 1 auto;min-height:280px;margin-top:4px}
+.podium{--gw:min(820px,80vw);position:relative;flex:1 1 auto;min-height:calc(var(--gw) * .113 + 270px);margin-top:4px}
 .podium .floor{position:absolute;left:50%;width:100vw;margin-left:-50vw;top:74%;height:1000px;z-index:0;
   background:linear-gradient(180deg,#E9CBBD 0%,#F0DBD1 3%,#F6E9E2 22%,#FAF3EE 48%,#FBF8F3 75%)}
 .podium .floor::before{content:"";position:absolute;left:0;right:0;top:-40px;height:40px;
   background:linear-gradient(180deg,rgba(233,203,189,0),rgba(233,203,189,.55))}
 .podium .glow{position:absolute;left:50%;top:-6%;width:min(860px,96vw);aspect-ratio:1;transform:translateX(-50%);border-radius:50%;z-index:0;
   background:radial-gradient(circle,rgba(255,252,249,.95) 0%,rgba(255,247,242,.55) 32%,rgba(255,247,242,0) 64%)}
-.podium .giant{position:absolute;left:50%;top:22%;width:min(1120px,90vw);transform:translateX(-50%);z-index:1;opacity:.17;transition:translate .8s var(--ease)}
+/* the big word sits on top, fully visible; the pedestal stands in the space below it */
+.podium .giant{position:absolute;left:50%;top:0;width:var(--gw);transform:translateX(-50%);z-index:1;opacity:.2;transition:translate .8s var(--ease)}
 .drift{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
 #driftBack{z-index:2}
 #driftFront{z-index:5}
@@ -127,12 +128,14 @@ section[id]{scroll-margin-top:84px}
 @keyframes pedIn{from{opacity:0;transform:translateY(70px)}to{opacity:1;transform:none}}
 .ped::before{content:"";position:absolute;left:6%;right:6%;bottom:-1%;height:10%;border-radius:50%;
   background:radial-gradient(ellipse at center,rgba(84,48,32,.42),rgba(84,48,32,0) 70%);filter:blur(5px)}
-/* 360 turntable: 12 photographed angles, 30deg apart, cross-faded by the script */
+/* 360 turntable: a real 3D draped pedestal (three.js) drawn into .turn-gl; the photo is the fallback */
 .ped{touch-action:pan-y;user-select:none;-webkit-user-select:none}
 .ped.dragging{cursor:grabbing}
 .turn{position:relative;display:block;width:100%;aspect-ratio:640/560;transition:transform .7s var(--ease)}
-.turn img{position:absolute;inset:0;width:100%;height:100%;opacity:0;pointer-events:none;-webkit-user-drag:none}
-.turn img:first-child{opacity:1}
+.turn img{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;-webkit-user-drag:none;transition:opacity .4s}
+.turn-gl{position:absolute;inset:0;width:100%;height:100%;display:block}
+.turn.gl-on img{opacity:0}
+.ped.gl::before{display:none}
 .ped:hover .turn,.ped:focus-visible .turn{transform:translateY(-10px)}
 .peek{position:absolute;left:50%;top:-6%;transform:translate(-50%,8px);opacity:0;pointer-events:none;white-space:nowrap;
   background:var(--cocoa);color:var(--cream);font-size:.84rem;font-weight:700;padding:9px 16px;border-radius:999px;box-shadow:var(--sh-s);
@@ -183,12 +186,12 @@ section[id]{scroll-margin-top:84px}
 .rot-arrows svg{width:16px;height:16px}
 
 /* manifesto: words fill in as you scroll */
-.manifesto{padding:130px 0 110px}
+.manifesto{padding:130px 0 44px}
 .manifesto p{font-family:var(--serif);font-weight:300;font-size:clamp(1.9rem,4.2vw,3.5rem);line-height:1.18;letter-spacing:-.02em;max-width:1000px;margin:0 auto;text-align:center}
 .manifesto .w{opacity:.16;transition:opacity .35s}
 .manifesto .w.on{opacity:1}
 .manifesto p.m-close{font-style:italic;font-size:clamp(1.4rem,2.6vw,2.1rem);color:var(--rose-ink);margin-top:28px}
-.manifesto .sig{display:flex;justify-content:center;margin-top:48px}
+.manifesto .sig{display:flex;justify-content:center;margin-top:64px}
 .manifesto .sig img{width:clamp(80px,8vw,100px);opacity:.9}
 
 /* ================= PRODUCTS: expanding panels ================= */
@@ -311,6 +314,11 @@ fieldset{border:0}
 .mbar .wa{width:54px;background:#25D366;border-radius:999px;display:grid;place-items:center}
 .mbar .wa svg{width:26px;height:26px;color:#fff}
 
+.tap-ring{position:fixed;left:0;top:0;width:64px;height:64px;margin:-32px 0 0 -32px;border-radius:50%;pointer-events:none;z-index:61;
+  border:1.5px solid rgba(160,98,79,.55);background:radial-gradient(circle,rgba(233,180,160,.35),rgba(233,180,160,0) 70%);animation:tapRing .6s var(--ease) forwards}
+@keyframes tapRing{from{transform:scale(.2);opacity:1}to{transform:scale(1.3);opacity:0}}
+@media (hover:none){.btn:active,.acc-hit:active,.chip:active,.rot-tab:active{transform:scale(.96)}}
+
 /* petal cursor */
 #petals{position:fixed;inset:0;width:100vw;height:100vh;pointer-events:none;z-index:60}
 .cur-dot,.cur-ring{position:fixed;left:0;top:0;pointer-events:none;z-index:61;will-change:transform;opacity:0;transition:opacity .3s}
@@ -329,16 +337,26 @@ fieldset{border:0}
 
 /* responsive */
 @media (max-width:1020px){
-  /* tablets and phones: panels stack, tap one to open it */
-  .acc{flex-direction:column;height:auto;gap:10px}
-  .acc-p,.acc-p.on{flex:none;flex-direction:column;border-radius:26px}
-  .acc-ph,.acc-p.on .acc-ph{flex:none;height:110px;transition:height .6s var(--ease)}
-  .acc-p.on .acc-ph{height:280px}
-  .acc-hit{border-radius:26px;align-items:flex-end;justify-content:space-between;gap:12px}
-  .acc-hit small,.acc-hit b{writing-mode:horizontal-tb;transform:none}
-  .acc-hit b{order:0;font-size:1.5rem}
-  .acc-body{display:none;min-width:0;padding:28px 28px 30px}
-  .acc-p.on .acc-body{display:flex}
+  /* tablets and phones: the chosen product's details sit on top, the four product boxes below; tap a box to switch */
+  .acc{display:grid;grid-template-columns:1fr 1fr;height:auto;gap:10px}
+  .acc-p{display:contents}
+  .acc-body{grid-column:1/-1;grid-row:1;display:none;min-width:0;padding:28px 28px 30px;border-radius:26px;background:var(--tint);margin-bottom:6px;
+    opacity:1;transform:none;visibility:visible;transition:none}
+  .acc-p.on .acc-body{display:flex;animation:infoIn .55s var(--ease)}
+  .acc-ph,.acc-p.on .acc-ph{flex:none;height:150px;border-radius:22px;transition:none}
+  .acc-p:nth-child(1) .acc-ph,.acc-p:nth-child(1) .acc-hit{grid-area:2/1}
+  .acc-p:nth-child(2) .acc-ph,.acc-p:nth-child(2) .acc-hit{grid-area:2/2}
+  .acc-p:nth-child(3) .acc-ph,.acc-p:nth-child(3) .acc-hit{grid-area:3/1}
+  .acc-p:nth-child(4) .acc-ph,.acc-p:nth-child(4) .acc-hit{grid-area:3/2}
+  .acc-ph img{transform:none}
+  .acc-p.on .acc-ph::after{opacity:1}
+  .form-tag{display:none}
+  .acc-hit{position:relative;inset:auto;border-radius:22px;flex-direction:column;align-items:flex-start;justify-content:flex-end;gap:4px;padding:14px;
+    box-shadow:inset 0 0 0 0 var(--cocoa);transition:box-shadow .3s,transform .2s}
+  .acc-p.on .acc-hit{opacity:1;pointer-events:auto;box-shadow:inset 0 0 0 3px var(--white),0 0 0 2px var(--cocoa)}
+  .acc-hit small,.acc-hit b{writing-mode:horizontal-tb;transform:none;white-space:normal}
+  .acc-hit small{font-size:.62rem;letter-spacing:.14em;line-height:1.35}
+  .acc-hit b{order:0;font-size:1.2rem}
   .prebook{grid-template-columns:1fr;padding:56px 40px;gap:36px}
 }
 @media (max-width:720px){
@@ -355,10 +373,11 @@ fieldset{border:0}
   .social-hdr svg{width:14px;height:14px}
   .hdr .btn{padding:.66rem 1rem;font-size:.88rem}
   .hero{padding:14px 0 22px;min-height:calc(100svh - 64px - 76px - env(safe-area-inset-bottom))}
-  .podium .giant{top:28%;width:96vw}
+  .podium{--gw:92vw}
   .peek{font-size:.76rem}
   .hero-cta .btn{flex:1 1 100%}
-  .manifesto{padding:90px 0 80px}
+  .manifesto{padding:90px 0 28px}
+  .manifesto .sig{margin-top:48px}
   .rot{padding:24px 0 18px}
   .rot-in{grid-template-columns:1fr;gap:16px}
   .rot-slide{gap:16px}
@@ -367,7 +386,7 @@ fieldset{border:0}
   .rot-cta .btn{flex:1}
   .rot-tab{font-size:.74rem}
   .rot-arrows button{width:36px;height:36px}
-  .acc-p.on .acc-ph{height:240px}
+  .acc-ph,.acc-p.on .acc-ph{height:128px}
   .acc-body{padding:24px 18px 26px}
   .acc-body .btn{align-self:stretch;white-space:normal}
   .prebook{padding:40px 18px;border-radius:30px}
@@ -435,17 +454,6 @@ fieldset{border:0}
     <button class="ped" type="button" data-goto="#prebook" aria-label="Our first products are under wraps. Pre-book to see them first.">
       <span class="turn" id="turn" aria-hidden="true">
           <img src="assets/turn/f00.webp" alt="" width="640" height="560" draggable="false">
-          <img src="assets/turn/f01.webp" alt="" width="640" height="560" draggable="false">
-          <img src="assets/turn/f02.webp" alt="" width="640" height="560" draggable="false">
-          <img src="assets/turn/f03.webp" alt="" width="640" height="560" draggable="false">
-          <img src="assets/turn/f04.webp" alt="" width="640" height="560" draggable="false">
-          <img src="assets/turn/f05.webp" alt="" width="640" height="560" draggable="false">
-          <img src="assets/turn/f06.webp" alt="" width="640" height="560" draggable="false">
-          <img src="assets/turn/f07.webp" alt="" width="640" height="560" draggable="false">
-          <img src="assets/turn/f08.webp" alt="" width="640" height="560" draggable="false">
-          <img src="assets/turn/f09.webp" alt="" width="640" height="560" draggable="false">
-          <img src="assets/turn/f10.webp" alt="" width="640" height="560" draggable="false">
-          <img src="assets/turn/f11.webp" alt="" width="640" height="560" draggable="false">
       </span>
       <span class="peek" aria-hidden="true">Not yet. Pre-book to see it first.</span>
     </button>
@@ -502,7 +510,6 @@ fieldset{border:0}
     <div class="prebook">
       <div class="pb-copy">
         <h2>Reserve your place</h2>
-        <p class="lede" style="margin-top:16px">Pre-booking helps us plan our first batch. It costs nothing, and you can change your mind any time.</p>
         <ul class="perks">
           <li><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg></span>Early access on products</li>
           <li><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg></span>Exclusive waitlist discount</li>
@@ -717,32 +724,9 @@ else{
   raf=requestAnimationFrame(loop);
 })();
 
-/* ---------- hero: draped pedestal turns 360deg; drag it to turn it yourself ---------- */
-(function(){
-  var ped=$('.ped'),fr=$$('#turn img'),N=fr.length,STEP=360/N,a=0,last=0,on=true,raf=0,drag=null,moved=false;
-  function paint(){
-    var p=((a%360)+360)%360/STEP,i=Math.floor(p)%N,t=p-Math.floor(p),j=(i+1)%N;
-    fr.forEach(function(im,k){im.style.opacity=k===i?1:k===j?t.toFixed(3):0;im.style.zIndex=k===j?2:k===i?1:0});
-  }
-  paint();
-  /* one full turn every 10 seconds; stops while the hero is off screen or while dragging */
-  function loop(t){if(!on){raf=0;return}if(last&&!drag)a+=(t-last)*.036;last=t;paint();raf=requestAnimationFrame(loop)}
-  if(!reduce){
-    if('IntersectionObserver' in window)new IntersectionObserver(function(es){on=es[0].isIntersecting;last=0;if(on&&!raf)raf=requestAnimationFrame(loop)}).observe($('#hero'));
-    raf=requestAnimationFrame(loop);
-  }
-  ped.addEventListener('pointerdown',function(e){drag={x:e.clientX,a:a};moved=false});
-  addEventListener('pointermove',function(e){if(!drag)return;var dx=e.clientX-drag.x;
-    if(Math.abs(dx)>6){moved=true;ped.classList.add('dragging')}if(moved){a=drag.a-dx*.6;if(reduce)paint()}});
-  addEventListener('pointerup',function(){drag=null;ped.classList.remove('dragging')});
-  addEventListener('pointercancel',function(){drag=null;moved=false;ped.classList.remove('dragging')});
-  /* a drag is not a click: don't jump to the form after turning it */
-  ped.addEventListener('click',function(e){if(moved){e.preventDefault();e.stopImmediatePropagation();moved=false}},true);
-})();
-
-/* the pedestal is sized from the podium's height (set in --ph) so the whole hero fits one screen */
-(function(){var pod=$('#podium');function fit(){pod.style.setProperty('--ph',pod.clientHeight+'px')}
-  fit();if('ResizeObserver' in window)new ResizeObserver(fit).observe(pod);else addEventListener('resize',fit)})();
+/* the pedestal is sized from the room left under the big word (set in --ph) so the whole hero fits one screen */
+(function(){var pod=$('#podium'),gw=$('.podium .giant');function fit(){pod.style.setProperty('--ph',Math.max(200,pod.clientHeight-gw.offsetHeight-6)+'px')}
+  fit();if('ResizeObserver' in window){var ro=new ResizeObserver(fit);ro.observe(pod);ro.observe(gw)}else{addEventListener('resize',fit);gw.addEventListener('load',fit)}})();
 
 /* the pedestal is the way in: click it to pre-book */
 $('.ped').addEventListener('click',function(){$('#prebook').scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'});
@@ -785,7 +769,9 @@ function choose(id){
 }
 var hoverable=window.matchMedia('(hover: hover) and (min-width: 1021px)');
 acc.addEventListener('mouseover',function(e){if(!hoverable.matches)return;var el=e.target.closest('.acc-p');if(el&&!el.classList.contains('on'))choose(el.dataset.id)});
-acc.addEventListener('click',function(e){var h=e.target.closest('.acc-hit');if(h)choose(h.parentNode.dataset.id)});
+acc.addEventListener('click',function(e){var h=e.target.closest('.acc-hit');if(!h)return;choose(h.parentNode.dataset.id);
+  /* phones: the details sit above the boxes, so bring them into view if they're scrolled away */
+  if(!hoverable.matches){var r=$('.acc-p.on .acc-body',acc).getBoundingClientRect();if(r.top<90)scrollBy({top:r.top-90,behavior:reduce?'auto':'smooth'})}});
 acc.addEventListener('focusin',function(e){var h=e.target.closest('.acc-hit');if(h&&hoverable.matches)choose(h.parentNode.dataset.id)});
 
 /* ---------- form ---------- */
@@ -889,7 +875,7 @@ $('#faqList').innerHTML=FAQ.map(function(f){return '<details><summary>'+f[0]+'<s
 var mbar=$('#mbar');
 if('IntersectionObserver' in window)new IntersectionObserver(function(es){mbar.classList.toggle('away',es[0].isIntersecting)},{threshold:.15}).observe($('#prebook'));
 
-/* ---------- petal cursor (mouse/trackpad only, never touch or reduced motion) ---------- */
+/* ---------- petal cursor (mouse/trackpad only, never reduced motion) ---------- */
 if(!reduce&&window.matchMedia('(pointer: fine)').matches){
   var cv=$('#petals'),cx=cv.getContext('2d'),dot=$('.cur-dot'),ring=$('.cur-ring'),DPR=Math.min(window.devicePixelRatio||1,2);
   function size(){cv.width=innerWidth*DPR;cv.height=innerHeight*DPR;cx.setTransform(DPR,0,0,DPR,0,0)}size();addEventListener('resize',size);
@@ -918,8 +904,185 @@ if(!reduce&&window.matchMedia('(pointer: fine)').matches){
   d.addEventListener('mouseleave',function(){ring.classList.add('hide');dot.classList.add('hide')});
   d.addEventListener('mouseenter',function(){ring.classList.remove('hide');dot.classList.remove('hide')});
 }
+/* ---------- touch: each tap blooms a few petals and a soft ring (phones and tablets) ---------- */
+else if(!reduce){
+  var tcv=$('#petals'),tcx=tcv.getContext('2d'),TD=Math.min(window.devicePixelRatio||1,2),tp=[],trun=false;
+  var TCOL=['#EDB9AA','#E19E8B','#F4D4C9','#CDA684','#E8C2A8','#D98F86'];
+  function tsize(){tcv.width=innerWidth*TD;tcv.height=innerHeight*TD;tcx.setTransform(TD,0,0,TD,0,0)}tsize();addEventListener('resize',tsize);
+  function tloop(){tcx.clearRect(0,0,innerWidth,innerHeight);
+    for(var i=tp.length-1;i>=0;i--){var p=tp[i];p.vx*=.97;p.vy=p.vy*.97+.06;p.x+=p.vx;p.y+=p.vy;p.r+=p.vr;p.life-=.022;
+      if(p.life<=0){tp.splice(i,1);continue}
+      tcx.save();tcx.translate(p.x,p.y);tcx.rotate(p.r);tcx.globalAlpha=p.life*.9;tcx.fillStyle=p.c;var s=p.s;
+      tcx.beginPath();tcx.moveTo(0,-s);tcx.bezierCurveTo(s*.75,-s*.55,s*.6,s*.55,0,s);tcx.bezierCurveTo(-s*.6,s*.55,-s*.75,-s*.55,0,-s);tcx.fill();tcx.restore()}
+    if(tp.length)requestAnimationFrame(tloop);else trun=false}
+  addEventListener('pointerdown',function(e){
+    if(e.pointerType==='mouse'||e.target.closest('input,textarea,select'))return;
+    for(var i=0;i<9;i++){var a=Math.random()*Math.PI*2,sp=1.6+Math.random()*2.6;
+      tp.push({x:e.clientX,y:e.clientY,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp-1.2,r:Math.random()*6.3,vr:(Math.random()-.5)*.2,s:5+Math.random()*5,life:1,c:TCOL[Math.random()*TCOL.length|0]})}
+    if(tp.length>60)tp.splice(0,tp.length-60);
+    if(!trun){trun=true;requestAnimationFrame(tloop)}
+    var rg=d.createElement('span');rg.className='tap-ring';rg.style.left=e.clientX+'px';rg.style.top=e.clientY+'px';d.body.appendChild(rg);
+    setTimeout(function(){rg.remove()},650)},{passive:true});
+}
 })();
 
+</script>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+<script type="module">
+/* Hero pedestal: a satin cloth draped over a round stone base, built in three.js and turned 360deg.
+   The static photo (assets/turn/f00.webp) stays underneath as the fallback if WebGL is unavailable. */
+import * as THREE from 'three';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+
+const wrap = document.getElementById('turn');
+const ped = wrap && wrap.closest('.ped');
+if (wrap && ped) init();
+
+function init() {
+  let renderer;
+  try {
+    renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' });
+  } catch (e) { return; }
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  renderer.setPixelRatio(Math.min(devicePixelRatio || 1, 2));
+  renderer.setClearColor(0x000000, 0);
+  renderer.outputColorSpace = THREE.SRGBColorSpace;
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 0.95;
+  renderer.domElement.className = 'turn-gl';
+  wrap.appendChild(renderer.domElement);
+
+  const scene = new THREE.Scene();
+  const pmrem = new THREE.PMREMGenerator(renderer);
+  scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
+
+  const camera = new THREE.PerspectiveCamera(16.5, 640 / 560, 0.1, 50);
+  camera.position.set(0, 1.6, 6.4);
+  camera.lookAt(0, 0.6, 0);
+
+  const key = new THREE.DirectionalLight(0xfff1e6, 2.1); key.position.set(-3, 5, 4); scene.add(key);
+  const rim = new THREE.DirectionalLight(0xffe2d2, 1.1); rim.position.set(4, 3, -3); scene.add(rim);
+  scene.add(new THREE.HemisphereLight(0xfff6f0, 0xd9b8a5, 0.55));
+
+  const obj = new THREE.Group(); scene.add(obj);
+
+  /* ---- stone base: a lathe with softly rounded edges ---- */
+  const R = 1, H = 0.28, e = 0.035;
+  const prof = [new THREE.Vector2(0, 0)];
+  for (let i = 0; i <= 6; i++) { const a = -Math.PI / 2 + (i / 6) * Math.PI / 2; prof.push(new THREE.Vector2(R - e + Math.cos(a) * e, e + Math.sin(a) * e)); }
+  for (let i = 0; i <= 6; i++) { const a = (i / 6) * Math.PI / 2; prof.push(new THREE.Vector2(R - e + Math.cos(a) * e, H - e + Math.sin(a) * e)); }
+  prof.push(new THREE.Vector2(0, H));
+  const stone = new THREE.CanvasTexture(stoneCanvas());
+  stone.colorSpace = THREE.SRGBColorSpace;
+  stone.wrapS = stone.wrapT = THREE.RepeatWrapping; stone.repeat.set(2, 2.9);   // keeps the speckles round on the lathe
+  stone.anisotropy = renderer.capabilities.getMaxAnisotropy();
+  const base = new THREE.Mesh(new THREE.LatheGeometry(prof, 160),
+    new THREE.MeshStandardMaterial({ map: stone, roughness: 0.92, metalness: 0, color: 0xead2b8 }));
+  obj.add(base);
+
+  /* soft contact shadow on the floor (premultiplied, so its clear edges stay truly clear) */
+  const shadow = new THREE.Mesh(new THREE.PlaneGeometry(2.12, 2.12), new THREE.ShaderMaterial({
+    transparent: true, depthWrite: false, premultipliedAlpha: true,
+    vertexShader: 'varying vec2 vUv; void main(){ vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }',
+    fragmentShader: 'varying vec2 vUv; void main(){ float d = length(vUv - 0.5) * 2.0; float a = 0.55 * (1.0 - smoothstep(0.55, 1.0, d)); gl_FragColor = vec4(vec3(0.33, 0.19, 0.125) * a, a); }'
+  }));
+  shadow.rotation.x = -Math.PI / 2; shadow.position.y = -0.002; scene.add(shadow);
+
+  /* ---- satin cloth: one sheet, top disc -> rounded edge -> flared side with folds -> pooled hem ---- */
+  const N = 288, V = 150, Ytop = 1.46, Rt = 0.56, ed = 0.07, Yb = H + 0.012, Rh = 0.86;
+  const folds = (t, s) => {
+    let f = 0.6 * Math.sin(6 * t + 1.1 + 0.5 * s) + 0.38 * Math.sin(9 * t + 2.6 - 0.8 * s) + 0.22 * Math.sin(14 * t + 0.4 + 1.5 * s) + 0.15 * Math.sin(3 * t + 5.0);
+    f = Math.sign(f) * Math.pow(Math.abs(f), 0.7);            // sharper ridges, softer valleys
+    return f + 0.3 * s * s * Math.sin(21 * t + 4 * s);         // finer creases lower down
+  };
+  const pos = new Float32Array(N * (V + 1) * 3);
+  let k = 0;
+  for (let j = 0; j <= V; j++) {
+    const v = j / V;
+    for (let i = 0; i < N; i++) {
+      const t = (i / N) * Math.PI * 2;
+      let r, y;
+      if (v < 0.22) {                         // flat top, very slight dome
+        const u = v / 0.22; r = u * (Rt - ed); y = Ytop + 0.012 * (1 - u * u);
+      } else if (v < 0.3) {                   // rounded table edge
+        const u = (v - 0.22) / 0.08, a = u * Math.PI / 2;
+        r = Rt - ed + Math.sin(a) * ed; y = Ytop - ed + Math.cos(a) * ed;
+      } else if (v < 0.9) {                   // drape: flares out, folds grow towards the floor
+        const s = (v - 0.3) / 0.6;
+        const flare = Math.pow(s, 1.7);
+        const amp = 0.015 + 0.17 * Math.pow(s, 1.2);
+        r = (Rt + (Rh - Rt) * flare) * (1 + amp * folds(t, s));
+        y = Ytop - ed - (Ytop - ed - Yb - 0.05) * (0.15 * s + 0.85 * Math.pow(s, 1.08));
+      } else {                                // hem pools on the stone and tucks under
+        const u = (v - 0.9) / 0.1;
+        const rr = Rh * (1 + 0.185 * folds(t, 1));
+        r = rr + 0.09 * Math.sin(u * Math.PI * 0.85) * (1 + 0.7 * Math.sin(6 * t + 1.6));
+        y = Yb + 0.05 * (1 - u) * (1 - u) + 0.02 * Math.sin(u * Math.PI) * (1 + Math.sin(9 * t));
+      }
+      r = Math.min(r, 0.985);
+      pos[k++] = Math.cos(t) * r; pos[k++] = y; pos[k++] = Math.sin(t) * r;
+    }
+  }
+  const idx = [];
+  for (let j = 0; j < V; j++) for (let i = 0; i < N; i++) {
+    const a = j * N + i, b = j * N + (i + 1) % N, c = (j + 1) * N + i, d = (j + 1) * N + (i + 1) % N;
+    idx.push(a, b, c, b, d, c);
+  }
+  const cg = new THREE.BufferGeometry();
+  cg.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+  cg.setIndex(idx); cg.computeVertexNormals();
+  const satin = new THREE.MeshPhysicalMaterial({
+    color: 0xe8a473, roughness: 0.34, metalness: 0, sheen: 0.8, sheenRoughness: 0.3, sheenColor: new THREE.Color(0xf6c7a2),
+    clearcoat: 0.35, clearcoatRoughness: 0.3, side: THREE.DoubleSide, envMapIntensity: 0.6
+  });
+  obj.add(new THREE.Mesh(cg, satin));
+
+  /* speckled sandstone: warm beige with rust and cream pits, tiles seamlessly left to right */
+  function stoneCanvas() {
+    const W = 1024, Hh = 256, c = document.createElement('canvas'); c.width = W; c.height = Hh;
+    const g = c.getContext('2d'); g.fillStyle = '#DCC09E'; g.fillRect(0, 0, W, Hh);
+    let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+    const dot = (x, y, r, col) => { for (const ox of [-W, 0, W]) { g.beginPath(); g.ellipse(x + ox, y, r * (0.6 + rnd() * 0.8), r, rnd() * 3, 0, 7); g.fillStyle = col; g.fill(); } };
+    for (let i = 0; i < 4200; i++) dot(rnd() * W, rnd() * Hh, 0.6 + rnd() * 2.4, `rgba(${200 + rnd() * 40 | 0},${120 + rnd() * 50 | 0},${60 + rnd() * 40 | 0},${0.25 + rnd() * 0.45})`);
+    for (let i = 0; i < 900; i++) dot(rnd() * W, rnd() * Hh, 0.8 + rnd() * 3, `rgba(255,248,236,${0.35 + rnd() * 0.4})`);
+    for (let i = 0; i < 260; i++) dot(rnd() * W, rnd() * Hh, 1 + rnd() * 3.5, `rgba(${170 + rnd() * 30 | 0},${100 + rnd() * 30 | 0},${50 + rnd() * 20 | 0},${0.35 + rnd() * 0.35})`);
+    return c;
+  }
+
+  /* ---- size, loop, drag ---- */
+  function size() {
+    const w = wrap.clientWidth, h = wrap.clientHeight; if (!w || !h) return;
+    renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix(); draw();
+  }
+  function draw() { renderer.render(scene, camera); }
+  new ResizeObserver(size).observe(wrap); size();
+  wrap.classList.add('gl-on'); ped.classList.add('gl');
+
+  let ang = -0.35, vel = 0, last = 0, on = true, raf = 0, drag = null, moved = false;
+  const SPEED = (Math.PI * 2) / 12000;          // one full turn every 12 seconds
+  function loop(t) {
+    if (!on) { raf = 0; return; }
+    const dt = last ? Math.min(t - last, 50) : 16; last = t;
+    if (!drag) { ang += (reduce ? 0 : SPEED * dt) + vel * dt; vel *= Math.pow(0.94, dt / 16); }
+    obj.rotation.y = ang; draw();
+    raf = requestAnimationFrame(loop);
+  }
+  new IntersectionObserver(es => { on = es[0].isIntersecting; last = 0; if (on && !raf) raf = requestAnimationFrame(loop); })
+    .observe(document.getElementById('hero'));
+  raf = requestAnimationFrame(loop);
+
+  let px = 0, pt = 0;
+  ped.addEventListener('pointerdown', ev => { drag = { x: ev.clientX, a: ang }; moved = false; px = ev.clientX; pt = performance.now(); vel = 0; });
+  addEventListener('pointermove', ev => {
+    if (!drag) return; const dx = ev.clientX - drag.x;
+    if (Math.abs(dx) > 6) { moved = true; ped.classList.add('dragging'); }
+    if (moved) { ang = drag.a + dx * 0.012; const now = performance.now(); vel = (ev.clientX - px) * 0.012 / Math.max(now - pt, 1); px = ev.clientX; pt = now; }
+  });
+  const end = () => { drag = null; ped.classList.remove('dragging'); };
+  addEventListener('pointerup', end); addEventListener('pointercancel', () => { end(); moved = false; });
+  /* a drag is not a click: don't jump to the form after turning it */
+  ped.addEventListener('click', ev => { if (moved) { ev.preventDefault(); ev.stopImmediatePropagation(); moved = false; } }, true);
+}
 </script>
 </body>
 </html>
