@@ -286,6 +286,7 @@ fieldset{border:0}
 /* FAQ */
 .faq{max-width:820px;margin:0 auto}
 .faq details{border-bottom:1px solid var(--line)}
+.faq details:last-child{border-bottom:0}
 .faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:26px 2px;font-family:var(--serif);font-size:1.6rem;line-height:1.2}
 .faq summary::-webkit-details-marker{display:none}
 .faq .pm{width:34px;height:34px;border-radius:50%;border:1.5px solid var(--line);display:grid;place-items:center;flex:0 0 auto;transition:transform .35s var(--ease),background .3s}
@@ -566,7 +567,7 @@ fieldset{border:0}
 
 <section class="sec" id="faq" style="padding-top:20px;padding-bottom:48px">
   <div class="shell">
-    <div class="sec-head" style="text-align:center;margin-left:auto;margin-right:auto"><h2>Questions</h2></div>
+    <div class="sec-head" style="text-align:center;margin-left:auto;margin-right:auto"><h2>FAQ</h2></div>
     <div class="faq" id="faqList"></div>
   </div>
 </section>
@@ -648,7 +649,7 @@ var PRODUCTS=[
   cta:'Reserve Your MotherWell'},
  {id:'cycle',name:'Menstrual Comfort',stage:'For your cycle',ph:'hero',form:'Daily supplement',
   hook:'Because your period shouldn\'t run your day.',
-  desc:'Period days can feel heavy. A daily supplement made to support you through your cycle, as part of a routine that looks after you all month long.',
+  desc:'Period days can feel heavy. A daily supplement made to support you through your cycle.',
   points:['Made for your monthly cycle','A simple daily routine','Easy-to-take supplement'],
   cta:'Reserve your Menstrual Comfort'}
 ];
