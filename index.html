@@ -607,8 +607,8 @@ var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
    localPhotos: set true after running  node download-photos.mjs
    ============================================================= */
 var CFG={brand:'Lifebloom', wa:'919838043210', saveTo:'netlify', minAge:18, maxAge:99, localPhotos:false};
-/* social links for the header and footer buttons: replace with the real accounts */
-var SOCIAL={instagram:'https://www.instagram.com/', email:'hello@example.com', linkedin:'https://www.linkedin.com/'};
+/* social links for the header and footer buttons */
+var SOCIAL={instagram:'https://www.instagram.com/lifebloom_india', email:'lifebloomindia16@gmail.com', linkedin:'https://www.linkedin.com/company/lifebloomindia/'};
 
 /* Free Unsplash photos (commercial use allowed). The block between the markers is read by download-photos.mjs */
 /* PHOTOS:START */
@@ -769,7 +769,13 @@ function choose(id){
 }
 var hoverable=window.matchMedia('(hover: hover) and (min-width: 1021px)');
 acc.addEventListener('mouseover',function(e){if(!hoverable.matches)return;var el=e.target.closest('.acc-p');if(el&&!el.classList.contains('on'))choose(el.dataset.id)});
-acc.addEventListener('click',function(e){var h=e.target.closest('.acc-hit');if(!h)return;choose(h.parentNode.dataset.id);
+/* phones and tablets start with every product closed; desktop keeps the first panel open */
+function syncLayout(){if(!hoverable.matches)choose(null);else if(!$('.acc-p.on',acc))choose(PRODUCTS[0].id)}
+syncLayout();if(hoverable.addEventListener)hoverable.addEventListener('change',syncLayout);
+acc.addEventListener('click',function(e){var h=e.target.closest('.acc-hit');if(!h)return;var p=h.parentNode;
+  /* phones: tapping the open box again closes it */
+  if(!hoverable.matches&&p.classList.contains('on')){choose(null);return}
+  choose(p.dataset.id);
   /* phones: the details sit above the boxes, so bring them into view if they're scrolled away */
   if(!hoverable.matches){var r=$('.acc-p.on .acc-body',acc).getBoundingClientRect();if(r.top<90)scrollBy({top:r.top-90,behavior:reduce?'auto':'smooth'})}});
 acc.addEventListener('focusin',function(e){var h=e.target.closest('.acc-hit');if(h&&hoverable.matches)choose(h.parentNode.dataset.id)});
