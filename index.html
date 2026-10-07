@@ -7,7 +7,7 @@
 <meta name="description" content="Lifebloom is a new women's wellness brand. Pre-book Daily Protein gummies, MenoBalance, MotherWell and Menstrual Comfort free, and be first in line at launch." />
 <meta property="og:title" content="Lifebloom | A healthier, brighter you" />
 <meta property="og:description" content="Wellness for every season of a woman's life. Pre-book free, no payment now." />
-<meta property="og:image" content="assets/logo-stack.png" />
+<meta property="og:image" content="assets/og-image.png" />
 <meta name="theme-color" content="#FBF8F3" />
 <link rel="icon" type="image/png" href="assets/emblem.png" />
 <link rel="preload" as="image" href="assets/turn/f00.webp" type="image/webp" />
@@ -118,7 +118,7 @@ section[id]{scroll-margin-top:84px}
 .podium .glow{position:absolute;left:50%;top:-6%;width:min(860px,96vw);aspect-ratio:1;transform:translateX(-50%);border-radius:50%;z-index:0;
   background:radial-gradient(circle,rgba(255,252,249,.95) 0%,rgba(255,247,242,.55) 32%,rgba(255,247,242,0) 64%)}
 /* the big word sits on top, fully visible; the pedestal stands in the space below it */
-.podium .giant{position:absolute;left:50%;top:0;width:var(--gw);transform:translateX(-50%);z-index:1;opacity:.2;transition:translate .8s var(--ease)}
+.podium .giant{position:absolute;left:50%;top:0;width:var(--gw);height:auto;transform:translateX(-50%);z-index:1;opacity:.2;transition:translate .8s var(--ease)}
 .drift{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
 #driftBack{z-index:2}
 #driftFront{z-index:5}
@@ -297,8 +297,7 @@ fieldset{border:0}
 /* footer */
 .ftr{padding:56px 0 34px;border-top:1px solid var(--line)}
 .ftr-top{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap}
-.ftr .stack{width:220px}
-.ftr .tagline{display:block;margin-top:14px}
+.ftr .stack{width:240px;height:auto}
 .ftr-links{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
 .disclaimer{font-size:.84rem;color:var(--muted);margin-top:44px;max-width:54rem}
 .credits{font-size:.78rem;color:var(--muted);margin-top:10px}
@@ -435,7 +434,7 @@ fieldset{border:0}
 
 <header class="hdr" id="hdr">
   <div class="shell hdr-in">
-    <a class="brand" href="#top" aria-label="Lifebloom home"><img class="mark" src="assets/emblem.png" alt="" width="50" height="50"><img class="word" src="assets/wordmark.png" alt="Lifebloom" width="184" height="22"></a>
+    <a class="brand" href="#top" aria-label="Lifebloom home"><img class="mark" src="assets/emblem.png" alt="" width="50" height="50"><img class="word" src="assets/wordmark.png" alt="Lifebloom" width="204" height="22"></a>
     <nav class="nav" aria-label="Main"><a href="#products">Products</a><a href="#about">About us</a></nav>
     <div class="social social-hdr"><a href="#" data-social="instagram" target="_blank" rel="noopener" aria-label="Lifebloom on Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".6" fill="currentColor"/></svg></a><a href="#" data-social="email" aria-label="Email Lifebloom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></a><a href="#" data-social="linkedin" target="_blank" rel="noopener" aria-label="Lifebloom on LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9.5h4V21H3V9.5Zm6.5 0h3.8v1.6h.06c.53-1 1.83-2.06 3.77-2.06 4.03 0 4.77 2.65 4.77 6.1V21h-4v-5.2c0-1.24-.02-2.84-1.73-2.84-1.73 0-2 1.35-2 2.75V21h-4V9.5Z"/></svg></a></div>
     <a class="btn btn-main" href="#prebook">Get early access</a>
@@ -453,7 +452,7 @@ fieldset{border:0}
   <div class="podium" id="podium">
     <div class="floor" aria-hidden="true"></div>
     <div class="glow" aria-hidden="true"></div>
-    <img class="giant" src="assets/giant-word.png" alt="" aria-hidden="true" width="1600" height="181">
+    <img class="giant" src="assets/giant-word.png" alt="" aria-hidden="true" width="1600" height="179">
     <button class="ped" type="button" data-goto="#prebook" aria-label="Our first products are under wraps. Pre-book to see them first.">
       <span class="turn" id="turn" aria-hidden="true">
           <img src="assets/turn/f00.webp" alt="" width="640" height="560" draggable="false">
@@ -576,7 +575,7 @@ fieldset{border:0}
 <footer class="ftr">
   <div class="shell">
     <div class="ftr-top">
-      <div><img class="stack" src="assets/logo-stack.png" alt="Lifebloom" width="220" height="125"><span class="tagline">A healthier, brighter you</span></div>
+      <div><img class="stack" src="assets/logo-stack.png" alt="Lifebloom: A healthier, brighter you" width="240" height="156"></div>
       <div class="ftr-links">
         <div class="social social-ftr"><a href="#" data-social="instagram" target="_blank" rel="noopener" aria-label="Lifebloom on Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".6" fill="currentColor"/></svg></a><a href="#" data-social="email" aria-label="Email Lifebloom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></a><a href="#" data-social="linkedin" target="_blank" rel="noopener" aria-label="Lifebloom on LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9.5h4V21H3V9.5Zm6.5 0h3.8v1.6h.06c.53-1 1.83-2.06 3.77-2.06 4.03 0 4.77 2.65 4.77 6.1V21h-4v-5.2c0-1.24-.02-2.84-1.73-2.84-1.73 0-2 1.35-2 2.75V21h-4V9.5Z"/></svg></a></div>
         <a class="btn btn-soft" href="#" data-wa="Hi Lifebloom, I have a question about the launch."><svg viewBox="0 0 24 24" fill="currentColor" style="color:#25D366"><path d="M12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.5A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.2-1.2l-.3-.2-2.9.9.9-2.8-.2-.3A8 8 0 1 1 12 20Z"/></svg>+91 98380 43210</a>
