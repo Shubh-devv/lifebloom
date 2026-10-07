@@ -110,7 +110,7 @@ section[id]{scroll-margin-top:84px}
 .ready .hero h1 .ln:nth-child(2)>span{transition-delay:.12s}
 .ready .hero .fade-in{transform:none;opacity:1;transition:transform 1s var(--ease),opacity 1s;transition-delay:var(--d,.3s)}
 /* the set: no z-index here, so wall, word, petals and pedestal can layer with the hero */
-.podium{--gw:min(820px,80vw);position:relative;flex:1 1 auto;min-height:calc(var(--gw) * .113 + 270px);margin-top:4px}
+.podium{--gw:min(820px,80vw);--gap:clamp(14px,3.6vh,34px);position:relative;flex:1 1 auto;min-height:calc(var(--gw) * .113 + var(--gap) * 2 + 210px);margin-top:4px}
 .podium .floor{position:absolute;left:50%;width:100vw;margin-left:-50vw;top:74%;height:1000px;z-index:0;
   background:linear-gradient(180deg,#E9CBBD 0%,#F0DBD1 3%,#F6E9E2 22%,#FAF3EE 48%,#FBF8F3 75%)}
 .podium .floor::before{content:"";position:absolute;left:0;right:0;top:-40px;height:40px;
@@ -118,7 +118,7 @@ section[id]{scroll-margin-top:84px}
 .podium .glow{position:absolute;left:50%;top:-6%;width:min(860px,96vw);aspect-ratio:1;transform:translateX(-50%);border-radius:50%;z-index:0;
   background:radial-gradient(circle,rgba(255,252,249,.95) 0%,rgba(255,247,242,.55) 32%,rgba(255,247,242,0) 64%)}
 /* the big word sits on top, fully visible; the pedestal stands in the space below it */
-.podium .giant{position:absolute;left:50%;top:0;width:var(--gw);height:auto;transform:translateX(-50%);z-index:1;opacity:.2;transition:translate .8s var(--ease)}
+.podium .giant{position:absolute;left:50%;top:var(--gap);width:var(--gw);height:auto;transform:translateX(-50%);z-index:1;opacity:.2;transition:translate .8s var(--ease)}
 .drift{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
 #driftBack{z-index:2}
 #driftFront{z-index:5}
@@ -727,7 +727,7 @@ else{
 })();
 
 /* the pedestal is sized from the room left under the big word (set in --ph) so the whole hero fits one screen */
-(function(){var pod=$('#podium'),gw=$('.podium .giant');function fit(){pod.style.setProperty('--ph',Math.max(200,pod.clientHeight-gw.offsetHeight-6)+'px')}
+(function(){var pod=$('#podium'),gw=$('.podium .giant');function fit(){pod.style.setProperty('--ph',Math.max(200,pod.clientHeight-gw.offsetTop*2-gw.offsetHeight-6)+'px')}
   fit();if('ResizeObserver' in window){var ro=new ResizeObserver(fit);ro.observe(pod);ro.observe(gw)}else{addEventListener('resize',fit);gw.addEventListener('load',fit)}})();
 
 /* the pedestal is the way in: click it to pre-book */
