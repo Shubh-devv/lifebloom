@@ -35,6 +35,7 @@
   --sans:'Satoshi',system-ui,-apple-system,'Segoe UI',sans-serif;
   --shell:1180px; --ease:cubic-bezier(.22,1,.36,1); --swift:cubic-bezier(.76,0,.24,1);
   --sh:0 40px 80px -46px rgba(63,38,25,.5); --sh-s:0 16px 34px -22px rgba(63,38,25,.45);
+  --ob:36px; /* height of the 15% off strip on top of the header */
 }
 *{margin:0;padding:0;box-sizing:border-box;min-width:0}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
@@ -55,7 +56,7 @@ h3{font-size:clamp(2rem,3.6vw,3rem);line-height:1.02}
 .lede{font-size:1.12rem;color:var(--cocoa-2);max-width:34rem}
 .tagline{font-size:.76rem;font-weight:700;letter-spacing:.34em;text-transform:uppercase;color:var(--rose-ink)}
 .sec{padding:120px 0}
-section[id]{scroll-margin-top:84px}
+section[id]{scroll-margin-top:calc(84px + var(--ob))}
 .sec-head{max-width:40rem;margin-bottom:48px}
 .sec-head p{color:var(--cocoa-2);margin-top:16px;font-size:1.06rem}
 
@@ -107,7 +108,7 @@ section[id]{scroll-margin-top:84px}
 .social-ftr svg{width:20px;height:20px}
 
 /* ================= HERO: studio reveal ================= */
-.hero{position:relative;overflow:hidden;text-align:center;padding:18px 0 30px;display:flex;flex-direction:column;min-height:calc(100svh - 76px);
+.hero{position:relative;overflow:hidden;text-align:center;padding:18px 0 30px;display:flex;flex-direction:column;min-height:calc(100svh - 76px - var(--ob));
   background:linear-gradient(180deg,#F9EEE8 0%,#F5E2D9 55%,#F2D9CD 100%)}
 .hero-copy,.hero-foot{position:relative;z-index:6}
 .hero .tagline{display:inline-block;margin-bottom:12px}
@@ -369,7 +370,37 @@ fieldset{border:0}
   .acc-hit b{order:0;font-size:1.2rem}
   .prebook{grid-template-columns:1fr;padding:56px 40px;gap:36px}
 }
+/* ---------- 15% off: strip on top of the header + welcome popup ---------- */
+.offer-bar{display:flex;align-items:center;justify-content:center;gap:.5rem;width:100%;height:var(--ob);border:0;background:var(--cocoa);color:var(--cream);
+  font-size:.86rem;font-weight:500;padding:0 16px;white-space:nowrap;overflow:hidden}
+.offer-bar b{font-weight:700;color:#F4D4C9;letter-spacing:.04em}
+.offer-bar u{text-underline-offset:3px;font-weight:700}
+.offer-bar:hover u{color:#F4D4C9}
+.offer{border:0;padding:0;margin:auto;width:min(440px,calc(100vw - 32px));max-height:calc(100dvh - 32px);overflow:auto;border-radius:28px;
+  background:var(--white);color:var(--cocoa);box-shadow:var(--sh)}
+.offer::backdrop{background:rgba(63,38,25,.5);backdrop-filter:blur(4px)}
+.offer[open]{animation:offerIn .5s var(--ease)}
+@keyframes offerIn{from{opacity:0;transform:translateY(18px) scale(.97)}}
+.offer,.offer *{cursor:auto!important}
+.offer button,.offer label{cursor:pointer!important}
+.offer input[type=tel]{cursor:text!important}
+.offer-pane{padding:40px 30px 28px;text-align:center;background:linear-gradient(180deg,var(--blush) 0,var(--white) 52%)}
+.offer-x{position:absolute;top:12px;right:12px;width:38px;height:38px;border-radius:50%;border:0;background:rgba(255,253,251,.85);display:grid;place-items:center;z-index:1}
+.offer-x svg{width:18px;height:18px}
+.offer-big{font-family:var(--serif);font-size:clamp(3.8rem,15vw,5.2rem);line-height:.9;font-weight:300;color:var(--rose-ink);letter-spacing:-.03em;margin:12px 0 6px}
+.offer-big small{font-size:.4em;font-weight:400;letter-spacing:.02em}
+.offer h3{font-size:1.65rem;margin-bottom:10px}
+.offer .sub{color:var(--cocoa-2);font-size:.98rem;margin:0 auto 22px;max-width:22rem}
+.offer form{text-align:left}
+.offer .fld{margin-bottom:14px}
+.offer-note{font-size:.8rem;color:var(--muted);margin-top:12px;text-align:center}
+.offer .seal{width:72px;margin:0 auto 14px}
+@media (prefers-reduced-motion:reduce){.offer[open]{animation:none}}
+
 @media (max-width:720px){
+  :root{--ob:34px}
+  .offer-bar{font-size:.8rem;gap:.35rem}
+  .offer-pane{padding:36px 20px 24px}
   body{font-size:16.5px;padding-bottom:calc(76px + env(safe-area-inset-bottom))}
   .shell{padding:0 18px}
   .sec{padding:80px 0}
@@ -382,7 +413,7 @@ fieldset{border:0}
   .social-hdr a{width:32px;height:32px}
   .social-hdr svg{width:14px;height:14px}
   .hdr .btn{padding:.66rem 1rem;font-size:.88rem}
-  .hero{padding:14px 0 22px;min-height:calc(100svh - 64px - 76px - env(safe-area-inset-bottom))}
+  .hero{padding:14px 0 22px;min-height:calc(100svh - 64px - var(--ob) - 76px - env(safe-area-inset-bottom))}
   .podium{--gw:92vw}
   .peek{font-size:.76rem}
   .hero-cta .btn{flex:1 1 100%}
@@ -443,6 +474,7 @@ fieldset{border:0}
 </svg>
 
 <header class="hdr" id="hdr">
+  <button class="offer-bar" type="button" data-offer><b>FLAT 15% OFF</b> on your first order. <u>Get your code</u></button>
   <div class="shell hdr-in">
     <a class="brand" href="#top" aria-label="Lifebloom home"><img class="mark" src="assets/emblem.png" alt="" width="50" height="50"><img class="word" src="assets/wordmark.png" alt="Lifebloom" width="204" height="22"></a>
     <nav class="nav" aria-label="Main"><a href="#products">Products</a><a href="#about">About us</a></nav>
@@ -597,6 +629,33 @@ fieldset{border:0}
     <div class="ftr-bot"><span>© <span id="yr"></span> Lifebloom. All rights reserved.</span><span>Website by <a href="https://digiyaan360.netlify.app/" target="_blank" rel="noopener">Digiyaan360</a></span></div>
   </div>
 </footer>
+
+<!-- 15% off popup. Numbers are saved to Netlify Forms as "offer" (Site > Forms), then WhatsApp opens so the visitor asks for the code -->
+<dialog class="offer" id="offer" aria-labelledby="offerTitle">
+  <button class="offer-x" type="button" data-offer-close aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+  <div class="offer-pane" id="offerAsk">
+    <span class="tagline">Welcome gift</span>
+    <p class="offer-big">15% <small>OFF</small></p>
+    <h3 id="offerTitle">your first Lifebloom order</h3>
+    <p class="sub">Enter your WhatsApp number and we'll send your discount code on WhatsApp.</p>
+    <form id="ofForm" name="offer" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+      <input type="hidden" name="form-name" value="offer">
+      <p class="hp"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+      <div class="fld"><label for="of-mobile">WhatsApp number</label>
+        <div class="tel"><span>+91</span><input type="tel" id="of-mobile" name="mobile" inputmode="numeric" autocomplete="tel-national" placeholder="10-digit number" maxlength="18"></div>
+        <p class="err" id="e-of">Please enter a valid 10-digit Indian mobile number.</p></div>
+      <button class="btn btn-wa" type="submit" style="width:100%"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.5A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.2-1.2l-.3-.2-2.9.9.9-2.8-.2-.3A8 8 0 1 1 12 20Z"/></svg>Get my 15% off code</button>
+      <p class="offer-note">By continuing you agree to Lifebloom messaging you on WhatsApp. We never share your number.</p>
+    </form>
+  </div>
+  <div class="offer-pane" id="offerDone" hidden>
+    <img class="seal" src="assets/emblem.png" alt="">
+    <h3>Almost there!</h3>
+    <p class="sub">WhatsApp is opening with your message. Tap <b>send</b> and we'll reply with your 15% off code.</p>
+    <button class="btn btn-wa" type="button" id="ofAgain" style="width:100%"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.5A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.2-1.2l-.3-.2-2.9.9.9-2.8-.2-.3A8 8 0 1 1 12 20Z"/></svg>Open WhatsApp again</button>
+    <button class="btn btn-soft" type="button" data-offer-close style="width:100%;margin-top:10px">Continue browsing</button>
+  </div>
+</dialog>
 
 <a class="wa-fab" href="#" data-wa="Hi Lifebloom, I'd like to know more about the launch." aria-label="Chat with Lifebloom on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.5A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.2-1.2l-.3-.2-2.9.9.9-2.8-.2-.3A8 8 0 1 1 12 20Z"/><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.1-.6.2s-.7.9-.9 1.1c-.2.2-.3.2-.6.1a8 8 0 0 1-2.4-1.5 9 9 0 0 1-1.6-2c-.2-.3 0-.4.1-.6l.5-.5c.1-.2.2-.3.3-.5s0-.4 0-.5-.6-1.5-.8-2-.5-.5-.6-.5h-.6c-.2 0-.5.1-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3 2 3.1 5 4.3c.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.4.2-.6.2-1.2.2-1.3l-.5-.2Z"/></svg></a>
 <div class="mbar" id="mbar"><a class="btn btn-main" href="#prebook">Get early access</a>
@@ -893,6 +952,34 @@ form.addEventListener('submit',function(e){
 $('#faqList').innerHTML=FAQ.map(function(f){return '<details><summary>'+f[0]+'<span class="pm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 5v14M5 12h14"/></svg></span></summary><p>'+f[1]+'</p></details>'}).join('');
 var mbar=$('#mbar');
 if('IntersectionObserver' in window)new IntersectionObserver(function(es){mbar.classList.toggle('away',es[0].isIntersecting)},{threshold:.15}).observe($('#prebook'));
+
+/* ---------- 15% off popup: opens once per visit after the intro; never again once a number is sent ---------- */
+(function(){
+  var dlg=$('#offer');if(!dlg||!dlg.showModal)return;
+  var of=$('#ofForm'),inp=$('#of-mobile'),num='';
+  function get(s,k){try{return s.getItem(k)}catch(e){return null}}
+  function put(s,k,v){try{s.setItem(k,v)}catch(e){}}
+  function msg(){return 'Hi Lifebloom! Please send me my 15% off code.\n*Mobile:* +91 '+num.replace(/(\d{5})(\d{5})/,'$1 $2')}
+  function open(){if(!dlg.open){dlg.showModal();if(!$('#offerAsk').hidden)setTimeout(function(){inp.focus()},60)}}
+  function close(){dlg.close()}
+  dlg.addEventListener('close',function(){put(sessionStorage,'lb-offer-seen','1')});
+  dlg.addEventListener('click',function(e){if(e.target===dlg||e.target.closest('[data-offer-close]'))close()});
+  $$('[data-offer]').forEach(function(b){b.addEventListener('click',open)});
+  inp.addEventListener('input',function(){inp.removeAttribute('aria-invalid');showErr('e-of',false)});
+  of.addEventListener('submit',function(e){
+    e.preventDefault();num=digits(inp.value);
+    if(!/^[6-9]\d{9}$/.test(num)){showErr('e-of',true,inp);inp.focus();return}
+    openWA(msg()); /* open WhatsApp inside the tap itself, or phones block it */
+    var fd=new FormData(of);fd.set('mobile','+91 '+num);
+    fetch('/',{method:'POST',keepalive:true,headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(fd).toString()}).catch(function(){});
+    put(localStorage,'lb-offer','sent');
+    $('#offerAsk').hidden=true;$('#offerDone').hidden=false;
+  });
+  $('#ofAgain').addEventListener('click',function(){openWA(msg())});
+  if(get(localStorage,'lb-offer')||get(sessionStorage,'lb-offer-seen'))return;
+  /* wait for the starter animation to finish, then give the page a moment */
+  var w=setInterval(function(){if(d.body.classList.contains('ready')){clearInterval(w);setTimeout(open,1800)}},200);
+})();
 
 /* ---------- petal cursor (mouse/trackpad only, never reduced motion) ---------- */
 if(!reduce&&window.matchMedia('(pointer: fine)').matches){
