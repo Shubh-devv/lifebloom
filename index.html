@@ -14,9 +14,9 @@
   <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <title>Lifebloom | Pre-book women's wellness: Daily Protein, MenoBalance, MotherWell, Menstrual Comfort</title>
-<meta name="description" content="Lifebloom is a new women's wellness brand. Pre-book Daily Protein gummies, MenoBalance, MotherWell and Menstrual Comfort free, and be first in line at launch." />
+<meta name="description" content="Lifebloom is a new women's wellness brand. Pre-book Daily Protein gummies, MenoBalance, MotherWell and Menstrual Comfort free, and be first in line at launch. Exclusive discount: 15% off for pre-booking Lifebloom." />
 <meta property="og:title" content="Lifebloom | A healthier, brighter you" />
-<meta property="og:description" content="Wellness for every season of a woman's life. Pre-book free, no payment now." />
+<meta property="og:description" content="Wellness for every season of a woman's life. Pre-book free, no payment now. Exclusive discount: 15% off for pre-booking Lifebloom." />
 <meta property="og:image" content="assets/og-image.png" />
 <meta name="theme-color" content="#FBF8F3" />
 <link rel="icon" type="image/png" href="assets/emblem.png" />
@@ -442,6 +442,9 @@ fieldset{border:0}
 @media (max-width:520px){
   .social-hdr{display:none}
   .hdr .btn{margin-left:auto}
+  .offer-bar{font-size:.72rem;gap:.3rem;padding:0 10px}
+  .offer-bar b{letter-spacing:.02em}
+  .offer-bar u{display:none}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;animation-delay:0s!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
@@ -474,7 +477,7 @@ fieldset{border:0}
 </svg>
 
 <header class="hdr" id="hdr">
-  <button class="offer-bar" type="button" data-offer><b>FLAT 15% OFF</b> on your first order. <u>Get your code</u></button>
+  <button class="offer-bar" type="button" data-offer><b>EXCLUSIVE DISCOUNT: 15% OFF</b> for pre-booking Lifebloom. <u>Get your code</u></button>
   <div class="shell hdr-in">
     <a class="brand" href="#top" aria-label="Lifebloom home"><img class="mark" src="assets/emblem.png" alt="" width="50" height="50"><img class="word" src="assets/wordmark.png" alt="Lifebloom" width="204" height="22"></a>
     <nav class="nav" aria-label="Main"><a href="#products">Products</a><a href="#about">About us</a></nav>
@@ -556,7 +559,7 @@ fieldset{border:0}
         <h2>Reserve your place</h2>
         <ul class="perks">
           <li><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg></span>Early access on products</li>
-          <li><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg></span>Exclusive waitlist discount</li>
+          <li><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg></span>Exclusive discount: 15% off for pre-booking Lifebloom</li>
           <li><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg></span>Pay only if you decide to buy</li>
         </ul>
       </div>
@@ -634,10 +637,10 @@ fieldset{border:0}
 <dialog class="offer" id="offer" aria-labelledby="offerTitle">
   <button class="offer-x" type="button" data-offer-close aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
   <div class="offer-pane" id="offerAsk">
-    <span class="tagline">Welcome gift</span>
+    <span class="tagline">Exclusive discount</span>
     <p class="offer-big">15% <small>OFF</small></p>
-    <h3 id="offerTitle">your first Lifebloom order</h3>
-    <p class="sub">Enter your WhatsApp number and we'll send your discount code on WhatsApp.</p>
+    <h3 id="offerTitle">for pre-booking Lifebloom</h3>
+    <p class="sub">Enter your WhatsApp number and we'll send your exclusive pre-booking discount code on WhatsApp.</p>
     <form id="ofForm" name="offer" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
       <input type="hidden" name="form-name" value="offer">
       <p class="hp"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
@@ -651,7 +654,7 @@ fieldset{border:0}
   <div class="offer-pane" id="offerDone" hidden>
     <img class="seal" src="assets/emblem.png" alt="">
     <h3>Almost there!</h3>
-    <p class="sub">WhatsApp is opening with your message. Tap <b>send</b> and we'll reply with your 15% off code.</p>
+    <p class="sub">WhatsApp is opening with your message. Tap <b>send</b> and we'll reply with your exclusive 15% pre-booking discount code.</p>
     <button class="btn btn-wa" type="button" id="ofAgain" style="width:100%"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.5A10 10 0 1 0 12 2Zm0 18a8 8 0 0 1-4.2-1.2l-.3-.2-2.9.9.9-2.8-.2-.3A8 8 0 1 1 12 20Z"/></svg>Open WhatsApp again</button>
     <button class="btn btn-soft" type="button" data-offer-close style="width:100%;margin-top:10px">Continue browsing</button>
   </div>
@@ -724,6 +727,7 @@ var PRODUCTS=[
 ];
 var FAQ=[
  ['Do I pay anything to pre-book?','No. Pre-booking is completely free and you are not committing to buy. You only pay if you decide to order at launch.'],
+ ['Is there a discount for pre-booking?','Yes. Exclusive discount: 15% off for pre-booking Lifebloom. We will send your code on WhatsApp.'],
  ['What is in each product?','We will share the full ingredient list for every product before launch, on the label and on this site.'],
  ['Can I take these if I am pregnant or breastfeeding?','Please check with your doctor before starting any supplement if you are pregnant, breastfeeding, taking medication or have a medical condition.'],
  ['Can I pre-book for my mother or sister?','Yes. Fill in the form with their details, with their permission, so we contact the right person.']
@@ -959,7 +963,7 @@ if('IntersectionObserver' in window)new IntersectionObserver(function(es){mbar.c
   var of=$('#ofForm'),inp=$('#of-mobile'),num='';
   function get(s,k){try{return s.getItem(k)}catch(e){return null}}
   function put(s,k,v){try{s.setItem(k,v)}catch(e){}}
-  function msg(){return 'Hi Lifebloom! Please send me my 15% off code.\n*Mobile:* +91 '+num.replace(/(\d{5})(\d{5})/,'$1 $2')}
+  function msg(){return 'Hi Lifebloom! Please send me my exclusive 15% off code for pre-booking Lifebloom.\n*Mobile:* +91 '+num.replace(/(\d{5})(\d{5})/,'$1 $2')}
   function open(){if(!dlg.open){dlg.showModal();if(!$('#offerAsk').hidden)setTimeout(function(){inp.focus()},60)}}
   function close(){dlg.close()}
   dlg.addEventListener('close',function(){put(sessionStorage,'lb-offer-seen','1')});
